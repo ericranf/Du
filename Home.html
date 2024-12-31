@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Home Page</title>
+    <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Calibri+Light&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Century+Schoolbook&display=swap" rel="stylesheet">
     <style>
+
+@font-face {
+        font-family: 'Calibri Light';
+        src: url('assets/fonts/calibri-light.ttf') format('truetype'); /* Update the path if necessary */
+        font-weight: normal;
+        font-style: normal;
+    }
+
         body, html {
             margin: 0;
             padding: 0;
@@ -388,7 +398,7 @@
                 font-size: 18px;
                 padding-right: 0px;
                 text-align: left;
-                line-height: 1.8;
+                line-height: 2.0;
                 opacity: 0; /* Hidden initially */
                 transform: translateY(-20px); /* Slightly above its position */
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
@@ -401,7 +411,7 @@
                 font-family: 'Calibri Light', sans-serif;
                 line-height: 1.8;
                 text-align: left;
-                line-height: 1.8;
+                line-height: 2.0;
                 opacity: 1; /* Hidden initially */
                 transform: translateY(-20px); /* Slightly above its position */
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
@@ -490,6 +500,7 @@
             }
  
             .business-plan-paragraph {
+                font-family: 'Calibri Light';
                 font-size: 18px;
                 padding-left: 5%;
                 padding-right: 40px;
@@ -935,7 +946,7 @@
 
             <!-- New Header and Subheader Section -->
             <div class="extraordinary-section">
-                <h2 class="extraordinary-header">Let's build something extraordinary <em>together</em></h2>
+                <h2 class="extraordinary-header">Let's build something extraordinary <span class="underline-word">together</span></h2>
                 <h3 class="connect-subheader">Connect with us</h3>
             </div>
 
@@ -1033,6 +1044,12 @@ document.addEventListener('DOMContentLoaded', setupObservers);
 
 // Optional: Reset observers on window resize
 window.addEventListener('resize', setupObservers);
+
+
+
+
+
+
 
 
     </script>
