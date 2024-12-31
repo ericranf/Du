@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Calibri+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Century+Schoolbook&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+ 
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+        }
+ 
+        header .logo img {
+            height: 30px;
+            cursor: pointer;
+        }
+ 
+        nav {
+            display: flex;
+            gap: 30px;
+            justify-content: flex-end;
+            width: 100%;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 18px;
+        }
+ 
+        nav a:hover {
+            color: #ddd;
+        }
+ 
+        #nav-icon3 {
+            display: none;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+ 
+        #nav-icon3 span {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            border-radius: 2px;
+            transition: 0.5s ease;
+        }
+ 
+        #nav-icon3 span:nth-child(1) {
+            top: 0;
+        }
+ 
+        #nav-icon3 span:nth-child(2), #nav-icon3 span:nth-child(3) {
+            top: 10px;
+        }
+ 
+        #nav-icon3 span:nth-child(4) {
+            top: 20px;
+        }
+ 
+        #nav-icon3.open span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+ 
+        #nav-icon3.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+ 
+        #nav-icon3.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+ 
+        #nav-icon3.open span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+ 
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            margin: 0;
+            padding: 0;
+            z-index: -1;
+        }
+ 
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+ 
+        .business-plan-header {
+            font-family: 'Times New Roman', serif;
+            font-size: 30pt;
+            text-align: left;
+            margin-top: 60px;
+            color: black;
+            padding-left: 200px;
+            font-style: italic;
+            line-height: 1.2;
+        }
+ 
+        .business-plan-paragraph {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 22px;
+            color: black;
+            line-height: 1.6;
+            margin-top: 20px;
+            padding: 0 200px;
+            text-align: left;
+        }
+ 
+        .image-section {
+            display: flex;
+            align-items: flex-start;
+            padding: 40px 200px;
+            position: relative;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+ 
+        .image-section img {
+            width: 255px;
+            height: auto;
+            object-fit: cover;
+            margin-right: 40px;
+        }
+ 
+        .text-section {
+            flex: 1;
+        }
+ 
+        .resilience-vision-header {
+            font-family: 'Times New Roman', serif;
+            font-size: 30pt;
+            font-style: italic;
+            color: black;
+            margin-top: 30px;
+            margin-bottom: 0;
+            line-height: 20%;
+            padding-left: 0px;
+        }
+ 
+        .our-story-subheader {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 30px;
+            color: black;
+            margin-top: 0;
+            line-height: 0;
+            padding-left: 0px;
+        }
+ 
+        .story-paragraph {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 22px;
+            color: black;
+            line-height: 1.4;
+            margin-top: 5px;
+            padding-left: 0px;
+        }
+ 
+        .more-info-btn, .explore-btn {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 18px;
+            color: black;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: right;
+        }
+ 
+        .more-info-btn:hover, .explore-btn:hover {
+            text-decoration: underline;
+        }
+ 
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Calibri Light', sans-serif;
+        }
+ 
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+ 
+        footer a:hover {
+            color: white;
+        }
+ 
+        .footer-left {
+            width: 65%;
+            padding-left: 20px;
+        }
+ 
+        .socials {
+            text-align: right;
+            width: 30%;
+            padding-right: 20px;
+        }
+ 
+        .socials h4 {
+            margin-bottom: 10px;
+        }
+ 
+        /* Media Query for Half-Sized Screens (768px to 1024px) */
+        @media (min-width: 768px) and (max-width: 1999px) {
+            .business-plan-header {
+                font-size: 24pt;
+                padding-left: 40px;
+            }
+
+            .business-plan-header img {
+                height: 50px;
+            }
+
+            .business-plan-paragraph {
+                font-size: 18px;
+                padding: 0 40px;
+                text-align: left;
+            }
+ 
+            .image-section {
+                justify-content: center;
+                padding: 40px 40px;
+            }
+ 
+            .image-section img {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+ 
+            .resilience-vision-header {
+                font-size: 20px;
+                margin-top: 30px;
+            }
+ 
+            .our-story-subheader {
+                font-size: 50px;
+            }
+ 
+            .story-paragraph {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+ 
+            .more-info-btn {
+                font-size: 16px;
+            }
+
+        }
+ 
+        /* Media Query for Full-Sized Screens (1200px and above) */
+        @media (min-width: 1200px) {
+
+          .business-plan-header img {
+           height: 70px; /* Adjust the height of the Du image */
+           width: auto;
+           margin-top: 80px; /* Adjust vertical alignment */
+           margin-left: 10px; /* Add horizontal spacing */
+    }
+    .business-plan-header {
+                font-size: 40pt;
+                padding-left: 10%;
+
+            }
+
+            .business-plan-paragraph {
+                font-size: 22px;
+                padding-left: 30%;
+                padding-right: 00px;
+                text-align: left;
+                line-height: 1.8;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(-20px); /* Slightly above its position */
+                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            .business-plan-paragraph.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            } 
+ 
+            .resilience-vision-header {
+                font-size: 50px;
+                margin-top: 50px;
+            }
+ 
+            .our-story-subheader {
+                font-size: 40px;
+                margin-top: 50px;
+            }
+ 
+            .story-paragraph {
+                font-size: 22px;
+                padding-right: 00px;
+                text-align: left;
+                line-height: 1.8;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(-20px); /* Slightly above its position */
+                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            .story-paragraph.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            }
+            .vertical-line-container-resilience {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative; /* Ensures the line is positioned relative to this container */
+    padding-left: 20px; /* Adjust spacing */
+}
+
+.vertical-line-resilience {
+    border-left: 6px solid black; /* Adjust thickness/color as needed */
+    margin-right: 20px; /* Space between the line and the text */
+    height: 0; /* Allow dynamic height adjustment */
+    position: absolute; /* Absolute positioning within the container */
+    top: 36px; /* Start from the top */
+    bottom: 78px; /* Dynamic bottom offset */
+    left: 0; /* Align with the left edge */
+    width: 0; /* Vertical line has no width */
+    transition: height 2.5s ease-in-out; /* Add smooth animation */
+    overflow: hidden; /* Ensure no content is visible initially */
+}
+
+.vertical-line-resilience.animate {
+    height: calc(100% - 114px); /* Set dynamic height to match container */
+}
+
+            .explore-btn{
+                font-size: 23px;
+            }
+        }
+ 
+        /* For Mobile Screens (max-width: 768px) */
+        @media (max-width: 768px) {
+            body, header, .resilience-vision-header {
+                text-align: left;
+            }
+            
+            .story-paragraph {
+            padding-left: 5%;
+            text-align: left;
+            }
+
+            .resilience-vision-header, .lines-of-business-header {
+                font-size: 35px;
+                margin-top: 50px;
+            }
+ 
+            .our-story-subheader{
+                font-size: 25px;
+                text-align: left;
+            }
+
+        
+            .story-paragraph {
+                font-size: 18px;
+                padding-right: 0px;
+                text-align: left;
+                line-height: 1.8;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(-20px); /* Slightly above its position */
+                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            .david-paragraph {       
+                padding-top: 15px;     
+                padding-left: 5%;    
+                font-size: 18px;
+                font-family: 'Calibri Light', sans-serif;
+                line-height: 1.8;
+                text-align: left;
+                line-height: 1.8;
+                opacity: 1; /* Hidden initially */
+                transform: translateY(-20px); /* Slightly above its position */
+                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            
+            .vertical-line-container-david {
+               display: flex;
+               flex-direction: row;
+               align-items: flex-start;
+               position: relative; /* Ensures the line is positioned relative to this container */
+               padding-left: 0px; /* Adjust spacing */
+            }
+
+         .vertical-line-david {
+         border-left: 6px solid black; /* Adjust thickness/color as needed */
+         margin-right: 10px; /* Space between the line and the text */
+         height: 0; /* Allow dynamic height adjustment */
+         position: absolute; /* Absolute positioning within the container */
+         top: 125px; /* Start from the top */
+          bottom: 10px; /* Dynamic bottom offset */
+         left: 0; /* Align with the left edge */
+         width: 0; /* Vertical line has no width */
+         transition: height 2.5s ease-in-out; /* Add smooth animation */
+         overflow: hidden; /* Ensure no content is visible initially */
+        }
+
+.vertical-line-david.animate {
+    height: calc(100% - 196px); /* Set dynamic height to match container */
+}
+
+            .vertical-line-container-resilience {
+               display: flex;
+               flex-direction: row;
+               align-items: flex-start;
+               position: relative; /* Ensures the line is positioned relative to this container */
+               padding-left: 0px; /* Adjust spacing */
+            }
+
+         .vertical-line-resilience {
+         border-left: 6px solid black; /* Adjust thickness/color as needed */
+         margin-right: 10px; /* Space between the line and the text */
+         height: 0; /* Allow dynamic height adjustment */
+         position: absolute; /* Absolute positioning within the container */
+         top: 125px; /* Start from the top */
+          bottom: 10px; /* Dynamic bottom offset */
+         left: 0; /* Align with the left edge */
+         width: 0; /* Vertical line has no width */
+         transition: height 2.5s ease-in-out; /* Add smooth animation */
+         overflow: hidden; /* Ensure no content is visible initially */
+        }
+
+.vertical-line-resilience.animate {
+    height: calc(100% - 196px); /* Set dynamic height to match container */
+}
+
+            .story-paragraph.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            }
+ 
+            .image-section {
+                justify-content: center;
+                padding: 5%;
+            }
+ 
+            .image-section.reversed-order {
+                flex-direction: row-reverse;
+            }
+ 
+            .extraordinary-section {
+                display: none;
+                font-size: 18pt;
+                line-height: 2;
+            }
+ 
+            .business-plan-header {
+                font-size: 28pt;
+                padding-left: 30px;
+                line-height: 0px;
+            }
+ 
+ 
+            .business-plan-header img {
+                height: 50px;
+            }
+ 
+            .business-plan-paragraph {
+                font-size: 18px;
+                padding-left: 5%;
+                padding-right: 40px;
+                opacity: 0;
+                transform: translateY(0px); /* Slightly above its position */
+                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            .business-plan-paragraph.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            }
+
+            .vertical-line-container {
+            display: flex;
+            align-items: flex-start;
+            padding-left: 10%; /* Match the padding of business-plan-paragraph */
+            position: relative;
+        
+            }
+
+        .vertical-line {
+            border-left: 6px solid #000; /* Adjust color and width for modern look */
+            height: auto; /* Dynamic height */
+            margin-right: 20px; /* Space between the line and the text */
+            position: absolute;
+            height: 0;
+            top: 44px;
+            bottom: auto;
+            transition: height 4s ease-in-out; /* Add smooth animation */
+            overflow: hidden; /* Ensure no content is visible initially */
+       }
+
+          .vertical-line.animate {
+          height: calc(100% - 73px); /* Dynamic full height */
+    }
+ 
+            .more-info-btn, .explore-btn {
+                font-size: 19px;
+                display: block; /* Ensure it's a block-level element */
+                margin-left: auto;
+                text-align: right; /* Optional if you want the text inside the button aligned */
+            }
+ 
+            #nav-icon3 {
+                display: block;
+            }
+ 
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-end;
+                position: absolute;
+                top: 45px;
+                right: 0;
+                background-color: rgba(51, 51, 51, 0.5);
+                padding: 20px;
+                z-index: 5;
+                transition: transform 1s ease;
+                transform: translateY(-100%);
+            }
+ 
+            nav.open {
+                display: flex;
+                transform: translateY(0);
+            }
+ 
+            nav a {
+                padding-left: 20px;
+                font-family: 'Calibri Light', sans-serif;
+                font-size: 23px;
+                color: white;
+                text-decoration: none;
+            }
+ 
+            nav a:hover {
+                color: #ddd;
+            }
+ 
+            .david-image {
+                width: 100%;
+                height: auto;
+                margin-top: 50px;
+            }
+
+            .image-section-David {
+              padding-left: 5%;
+              padding-right: 5%;
+            }
+ 
+            .image-section img {
+                width: 100%;
+                height: auto;
+                margin-right: auto;
+                margin-left: auto;
+            }
+ 
+            .extraordinary-section {
+                display: block;
+            }
+        }
+ 
+         /* Contact Form Section */
+         .contact-form-section {
+            margin-top: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: left;
+        }
+
+        .contact-form-section label {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 18px;
+            color: black;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .contact-form-section input, .contact-form-section textarea {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 18px;
+            border: none;
+            border-bottom: 1px solid black;
+            width: 100%;
+            padding: 10px 0;
+            margin-top: 5px;
+            background-color: transparent;
+        }
+
+        .contact-form-section textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .contact-form-section .submit-btn {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 18px;
+           background-color: #333;
+           color: white;
+           border: none;
+           padding: 12px 20px;
+          cursor: pointer;
+          margin-top: 20px;
+          text-align: center;
+          width: auto; /* Ensures the button width is based on its content */
+         display: inline-block;
+        }
+
+        .contact-form-section .submit-btn:hover {
+            background-color: #444;
+            padding-bottom: 50px;
+        }
+
+        /* New Section for the Extraordinary Header */
+        .extraordinary-section {
+            margin-top: 30px;
+            text-align: center;
+            font-style: normal;
+        }
+ 
+        .extraordinary-header {
+            font-family: 'Times New Roman', serif;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: normal;
+        }
+ 
+        .extraordinary-header em {
+            font-style: italic;
+            font-weight: normal;
+        }
+ 
+        .connect-subheader {
+            font-family: 'Calibri Light', sans-serif;
+            font-size: 22px;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
+        .contact-form-section .submit-btn {
+            margin-bottom: 40px; /* Adds space below the submit button */
+        }
+ 
+        /* Media Query for Mobile Screens */
+        @media (max-width: 768px) {
+            .extraordinary-header {
+                font-size: 22px;
+            }
+ 
+            .connect-subheader {
+                font-size: 22px;
+            }
+        }
+ 
+         /* Media Query for Medium Screens (768px to 1024px) */
+         @media (min-width: 768px) and (max-width: 1999px) {
+            .contact-form-section {
+                padding-left: 100px;
+                padding-right: 100px;
+            }
+
+        }
+
+        /* Media Query for Mobile Screens */
+        @media (max-width: 768px) {
+            .extraordinary-section {
+                padding: 0 0px;
+                align-items: left;
+                line-height: 15px;
+
+            }
+
+            .connect-subheader {
+                font-size: 20px;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .contact-form-section {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+        }
+
+        /* Media Query for Medium Screens (768px to 1024px) */
+        @media (min-width: 768px) and (max-width: 1999px) {
+            .extraordinary-header {
+                font-size: 22px;
+                align-items: left;
+            }
+ 
+            .connect-subheader {
+                font-size: 25px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .contact-form-section {
+                padding-left: 10%;
+                padding-right: 10%;
+            }
+        }
+
+            .contact-form-section input, .contact-form-section textarea {
+                font-size: 18px;
+            }
+ 
+        /* Media Query for Large Screens (1200px and above) */
+        @media (min-width: 1200px) {
+            .extraordinary-header {
+                font-size: 50px;
+                text-align: left;
+                padding-left: 200px;
+                line-height: 0px;
+                padding-top: 50px;
+            }
+
+ 
+            .connect-subheader {
+                font-size: 40px;
+                text-align: left;
+                padding-left: 200px;
+            }
+        }
+
+            /* Add a vertical line beside the business-plan-paragraph */
+        @media (min-width: 1200px) {
+           .vertical-line-container {
+           display: flex;
+           align-items: flex-start;
+            padding-left: 20%; /* Match the padding of business-plan-paragraph */
+            padding-right: 10%;
+            position: relative;
+        
+            }
+
+        .vertical-line {
+            border-left: 6px solid #000; /* Adjust color and width for modern look */
+           height: auto; /* Dynamic height */
+          margin-right: 20px; /* Space between the line and the text */
+          position: absolute;
+          height: 0;
+           top: 55px;
+           bottom: 34px;
+           transition: height 2.5s ease-in-out; /* Add smooth animation */
+           overflow: hidden; /* Ensure no content is visible initially */
+       }
+
+       .vertical-line.animate {
+        height: calc(100% - 89px); /* Dynamic full height */
+    }
+
+       .business-plan-paragraph {
+        padding-left: 30px; /* Space between the line and text content */
+       }
+
+       
+
+    .image-section {
+        display: flex; /* Use flexbox for horizontal layout */
+        align-items: flex-start; /* Align content to the top */
+        justify-content: flex-start; /* Align items to the left */
+        padding-left: 10%; /* Adjust as needed for spacing */
+        gap: 40px; /* Add spacing between image and text section */
+    }
+
+    #eric-image {
+        width: 500px; /* Set a fixed width for the image */
+        height: auto;
+    }
+
+    .text-section {
+    max-width: 90%; /* Limit the width of the text section */
+    padding-left: 0px; /* Remove unnecessary padding */
+}
+
+.more-info-btn {
+        font-size: 23px; /* Adjust font size */
+        padding: -15px 20px; /* Adjust padding */
+    }
+
+    .image-section-David {
+        display: flex; /* Use flexbox for horizontal layout */
+        align-items: flex-start; /* Align content to the top */
+        justify-content: flex-start; /* Align items to the left */
+        padding-left: 10%;
+        gap: 60px; /* Add spacing between image and text section */
+        padding-top: 100px;
+
+    }
+
+    .david-image {
+       width: auto; /* Set a fixed width for the image */
+       height: 320px;
+    }
+
+            .vertical-line-container-david {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative; /* Ensures the line is positioned relative to this container */
+    padding-left: 20px; /* Adjust spacing */
+}
+
+.vertical-line-david {
+    border-left: 6px solid black; /* Adjust thickness/color as needed */
+    margin-right: 20px; /* Space between the line and the text */
+    height: auto; /* Allow dynamic height adjustment */
+    position: absolute; /* Absolute positioning within the container */
+    top: 36px; /* Start from the top */
+    bottom: 80px; /* Dynamic bottom offset */
+    left: 0; /* Align with the left edge */
+    width: 0; /* Vertical line has no width */
+}
+
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="home.html">
+                <img src="image (7).png" alt="Home Logo">
+            </a>
+        </div>
+ 
+        <div id="nav-icon3" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+ 
+        <nav>
+            <a href="discussions.html">Discussions</a>
+            <a href="Business Plan.html">Business Plan</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+ 
+    <main>
+        <section id="home">
+            <div class="video-container">
+                <video src="Night.MOV" autoplay muted loop></video>
+            </div>
+ 
+            <div class="business-plan-header">
+                <p style="display: inline;">What is</p>
+                <img src="Du.png" alt="Du"style="vertical-align: middle; display: inline; margin-top: -10px;">
+            </div>
+ 
+            <div class="vertical-line-container">
+                <div class="vertical-line"></div>
+                <div class="business-plan-paragraph">
+                    <p>Dumore is an investment group and asset manager dedicated to democratizing access to private real estate investments while building a geographically diverse portfolio across a range of CRE asset classes and risk profiles. Our mission is to create opportunities for investors of all sizes to participate in high-quality, well-researched commercial real estate opportunities that generate long-term value.</p>
+                    <p>Currently, Dumore is focused on revitalizing the aging multifamily housing stock in Long Beach, CA, a market poised for growth due to its proximity to major employment hubs and increasing demand for updated, affordable housing. By repositioning these properties through thoughtful renovations and operational efficiencies, Dumore aims to enhance the living experience for tenants while delivering sustainable returns for investors.</p>
+                    <p>Looking ahead, Dumore plans to expand its portfolio across other high-potential markets and asset classes, ensuring diversification and resilience while staying true to its commitment to accessible and impactful real estate investments.</p>
+                </div>
+            </div>
+            
+                <div class="image-section">
+                    <img src="Eric.png" alt="Eric" id="eric-image" />
+                    <div class="text-section">
+                        <div class="vertical-line-container-resilience">
+                            <div class="vertical-line-resilience"></div>
+                            <div>
+                                <div class="resilience-vision-header">
+                                    <p>Resilience & Vision</p>
+                                </div>
+                                <div class="our-story-subheader">
+                                    <p>Our Story</p>
+                                </div>
+                                <p class="story-paragraph">The concept for Dumore was born during our founder’s battle with bone cancer. While educating himself about the commercial real estate sector, he identified a critical need for greater accessibility to investments in private commercial real estate.</p>
+                                <button class="more-info-btn">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                
+              <div class="image-section-David">
+                <img class="david-image" src="David.jpg" alt="David" />
+                 <div class="text-section">               
+                  <div class="vertical-line-container-david">
+                        <div class="vertical-line-david"></div> <!-- Vertical line specific to the David section -->
+                        <div class="text-section">
+                            <div class="resilience-vision-header">
+                                <p>Gaining Insights</p>
+                            </div>
+                            <div class="our-story-subheader">
+                                <p>Discussions</p>
+                            </div>
+                            <p class="david-paragraph">
+                                Gaining insights from founders who have established CRE investment groups is particularly challenging due to the niche nature of the industry. Through our discussions, we can shed light on the experiences and challenges these founders faced while building their firms. 
+                            </p>
+                            <button class="explore-btn">Explore</button>
+                        </div>
+                    </div>
+                </div>
+         </div>
+
+            <!-- New Header and Subheader Section -->
+            <div class="extraordinary-section">
+                <h2 class="extraordinary-header">Let's build something extraordinary <em>together</em></h2>
+                <h3 class="connect-subheader">Connect with us</h3>
+            </div>
+
+            <div class="contact-form-section">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" placeholder="">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder=""></textarea>
+                <button class="submit-btn">Submit</button>
+            </div>
+ 
+        </section>
+    </main>
+ 
+    <footer>
+        <div class="footer-left">
+            <p>&copy; 2024 Simple Site. All rights reserved.</p>
+            <p>Contact us at <a href="mailto:info@simplesite.com">info@simplesite.com</a></p>
+        </div>
+ 
+        <div class="socials">
+            <h4>Socials</h4>
+            <p><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></p>
+        </div>
+    </footer>
+ 
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            const icon = document.querySelector('#nav-icon3');
+            nav.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+
+        function setupObservers() {
+    // Observer for '.vertical-line-container' (business plan paragraph and vertical line)
+    const businessPlanContainers = document.querySelectorAll('.vertical-line-container');
+    const businessPlanThreshold = window.innerWidth <= 768 ? 0.47 : 1.0;
+
+    const businessPlanObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const verticalLine = entry.target.querySelector('.vertical-line');
+                const paragraph = entry.target.querySelector('.business-plan-paragraph');
+                if (verticalLine) verticalLine.classList.add('animate');
+                if (paragraph) paragraph.classList.add('animate');
+            }
+        });
+    }, { threshold: businessPlanThreshold });
+
+    businessPlanContainers.forEach((container) => businessPlanObserver.observe(container));
+
+    // Observer for '.vertical-line-container-resilience' (resilience paragraph and line)
+    const resilienceContainers = document.querySelectorAll('.vertical-line-container-resilience');
+    const resilienceThreshold = window.innerWidth <= 768 ? 0.40 : 0.7;
+
+    const resilienceObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const verticalLineResilience = entry.target.querySelector('.vertical-line-resilience');
+                const paragraphResilience = entry.target.querySelector('.story-paragraph');
+                if (verticalLineResilience) verticalLineResilience.classList.add('animate');
+                if (paragraphResilience) paragraphResilience.classList.add('animate');
+            }
+        });
+    }, { threshold: resilienceThreshold });
+
+    resilienceContainers.forEach((container) => resilienceObserver.observe(container));
+
+    // Observer for '.vertical-line-container-david' (David's paragraph and line)
+    const davidContainers = document.querySelectorAll('.vertical-line-container-david');
+    const davidThreshold = 0.5; // Adjust threshold as needed
+
+    const davidObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const verticalLineDavid = entry.target.querySelector('.vertical-line-david');
+                const paragraphDavid = entry.target.querySelector('.david-paragraph');
+                if (verticalLineDavid) verticalLineDavid.classList.add('animate');
+                if (paragraphDavid) paragraphDavid.classList.add('animate');
+            }
+        });
+    }, { threshold: davidThreshold });
+
+    davidContainers.forEach((container) => davidObserver.observe(container));
+}
+
+// Run observers on load
+document.addEventListener('DOMContentLoaded', setupObservers);
+
+// Optional: Reset observers on window resize
+window.addEventListener('resize', setupObservers);
+
+
+    </script>
+</body>
+</html>
