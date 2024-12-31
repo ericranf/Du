@@ -13,7 +13,9 @@
 
 @font-face {
         font-family: 'Calibri Light';
-        src: url('assets/fonts/calibri-light.ttf') format('truetype'); /* Update the path if necessary */
+        src: url('assets/fonts/calibri-light.ttf') format('truetype'), /* Update the path if necessary */
+        url('assets/fonts/calibri-light.woff') format('woff'),
+        url('assets/fonts/calibri-light.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
@@ -428,7 +430,7 @@
             }
 
          .vertical-line-david {
-         border-left: 6px solid black; /* Adjust thickness/color as needed */
+         border-left: 4px solid black; /* Adjust thickness/color as needed */
          margin-right: 10px; /* Space between the line and the text */
          height: 0; /* Allow dynamic height adjustment */
          position: absolute; /* Absolute positioning within the container */
@@ -453,7 +455,7 @@
             }
 
          .vertical-line-resilience {
-         border-left: 6px solid black; /* Adjust thickness/color as needed */
+         border-left: 4px solid black; /* Adjust thickness/color as needed */
          margin-right: 10px; /* Space between the line and the text */
          height: 0; /* Allow dynamic height adjustment */
          position: absolute; /* Absolute positioning within the container */
@@ -483,11 +485,6 @@
                 flex-direction: row-reverse;
             }
  
-            .extraordinary-section {
-                display: none;
-                font-size: 18pt;
-                line-height: 2;
-            }
  
             .business-plan-header {
                 font-size: 28pt;
@@ -503,7 +500,7 @@
             .business-plan-paragraph {
                 font-family: 'Calibri Light';
                 line-height: 2.2;
-                font-size: 15px;
+                font-size: 16px;
                 padding-left: 5%;
                 padding-right: 7.5%;
                 opacity: 0;
@@ -525,7 +522,7 @@
             }
 
         .vertical-line {
-            border-left: 6px solid #000; /* Adjust color and width for modern look */
+            border-left: 4px solid #000; /* Adjust color and width for modern look */
             height: auto; /* Dynamic height */
             margin-right: 20px; /* Space between the line and the text */
             position: absolute;
@@ -586,7 +583,7 @@
             .david-image {
                 width: 100%;
                 height: auto;
-                margin-top: 50px;
+                margin-top: 100px;
             }
 
             .image-section-David {
@@ -601,9 +598,6 @@
                 margin-left: auto;
             }
  
-            .extraordinary-section {
-                display: block;
-            }
         }
  
          /* Contact Form Section */
@@ -680,7 +674,8 @@
             font-family: 'Calibri Light', sans-serif;
             font-size: 22px;
             font-weight: normal;
-            margin-top: 10px;
+            margin-top: 0px;
+
         }
 
         .contact-form-section .submit-btn {
@@ -690,42 +685,132 @@
         /* Media Query for Mobile Screens */
         @media (max-width: 768px) {
             .extraordinary-header {
-                font-size: 22px;
+                font-size: 32px;
+                text-align: left;
+                padding-top: 60px;
+                padding-left: 7.25%;
+
             }
  
             .connect-subheader {
-                font-size: 22px;
+                font-size: 25px;
+                padding-left: 7.25%;
+                line-height: 0;
+                text-align: left;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(20px); /* Below its original position */
+                transition: opacity 1s ease, transform 1s ease; /* Smooth fade and slide-in */
             }
-        }
+
+            .connect-subheader.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            }
+
+            .extraordinary-section {
+                padding: 0 0px;
+                align-items: left;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(20px); /* Slightly below its original position */
+                transition: opacity 1s ease, transform 1s ease; /* Smooth fade and slide-in */
+            }
+
+            .extraordinary-section.animate {
+             opacity: 1; /* Fully visible */
+            transform: translateY(0); /* Move to original position */
+            }
+
+          .underline-word {
+             display: inline-block;
+             position: relative;
+             font-style: normal; /* Default style */
+             transition: font-style 0.5s ease; /* Smooth italic transition */
+            }
+
+.underline-word::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Adjust underline position */
+    left: 0;
+    width: 0; /* No underline initially */
+    height: 2px; /* Thickness of underline */
+    background-color: black;
+    transition: width 0.5s ease; /* Smooth underline animation */
+}
+
+.underline-word.animate {
+    font-style: italic; /* Italicize smoothly */
+}
+
+.underline-word.animate::after {
+    width: 100%; /* Full underline */
+}
+
+}
+
+
+        
+
+
+
+
+
  
          /* Media Query for Medium Screens (768px to 1024px) */
          @media (min-width: 768px) and (max-width: 1999px) {
             .contact-form-section {
-                padding-left: 100px;
+
                 padding-right: 100px;
+
             }
 
         }
 
         /* Media Query for Mobile Screens */
         @media (max-width: 768px) {
-            .extraordinary-section {
-                padding: 0 0px;
-                align-items: left;
-                line-height: 15px;
 
-            }
 
-            .connect-subheader {
-                font-size: 20px;
-                text-align: left;
-                padding-left: 20px;
-            }
+
 
             .contact-form-section {
-                padding-left: 25px;
-                padding-right: 25px;
+                padding-right: 7.25%;
+                padding-top:25px;
+                padding-left: 7.25%;
+                opacity: 0; /* Hidden initially */
+                transform: translateY(20px); /* Slightly below its original position */
+                transition: opacity 1s ease, transform 1s ease; /* Smooth fade and slide-in */
             }
+
+            .contact-form-section.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
+            }
+
+
+/* Transition for the input/textarea underline */
+.contact-form-section input, 
+.contact-form-section textarea {
+    position: relative;
+}
+
+.contact-form-section input::after, 
+.contact-form-section textarea::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Hidden initially */
+    height: 2px;
+    background-color: black; /* Color of underline */
+    transition: width 1s ease; /* Smooth underline animation */
+}
+
+.contact-form-section input:focus::after, 
+.contact-form-section textarea:focus::after {
+    width: 100%; /* Full underline */
+}
+
+
         }
 
         /* Media Query for Medium Screens (768px to 1024px) */
@@ -1048,8 +1133,77 @@ document.addEventListener('DOMContentLoaded', setupObservers);
 window.addEventListener('resize', setupObservers);
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const extraordinarySection = document.querySelector('.extraordinary-section');
+    const extraordinaryHeader = document.querySelector('.extraordinary-header');
+    const underlineWord = document.querySelector('.underline-word');
+    const connectSubheader = document.querySelector('.connect-subheader');
+
+    // Observer to trigger animations when the extraordinary section is fully visible
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Fade-in the extraordinary section
+                    extraordinarySection.classList.add('animate');
+
+                    // Delay the underline and italicize animations
+                    setTimeout(() => {
+                        underlineWord.classList.add('animate');
+                    }, 1000); // Delay by 1 second
+
+                    // Delay the connect-subheader fade-in
+                    setTimeout(() => {
+                        connectSubheader.classList.add('animate');
+                    }, 2000); // Delay by 2 seconds
+                }
+            });
+        },
+        { threshold: 1.0 } // Trigger when the section is 100% visible
+    );
+
+    observer.observe(extraordinarySection);
+});
 
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const extraordinarySection = document.querySelector('.extraordinary-section');
+    const underlineWord = document.querySelector('.underline-word');
+    const connectSubheader = document.querySelector('.connect-subheader');
+    const contactForm = document.querySelector('.contact-form-section');
+
+    // Observer to trigger animations when the extraordinary section is fully visible
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Fade-in the extraordinary section
+                    extraordinarySection.classList.add('animate');
+
+                    // Delay the underline and italicize animations
+                    setTimeout(() => {
+                        underlineWord.classList.add('animate');
+                    }, 1000); // Delay by 1 second
+
+                    // Delay the connect-subheader fade-in
+                    setTimeout(() => {
+                        connectSubheader.classList.add('animate');
+                    }, 2000); // Delay by 2 seconds
+
+                    // Delay the contact form fade-in
+                    setTimeout(() => {
+                        contactForm.classList.add('animate');
+                    }, 3000); // Delay by 3 seconds
+                }
+            });
+        },
+        { threshold: 1.0 } // Trigger when the section is 100% visible
+    );
+
+    observer.observe(extraordinarySection);
+});
 
 
 
