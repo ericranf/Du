@@ -376,6 +376,87 @@
  
         /* For Mobile Screens (max-width: 768px) */
         @media (max-width: 768px) {
+   
+            .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Times New Roman', serif;
+    font-size: 38px;
+    color: black;
+    padding-left: 20px;
+    z-index: 1;
+}
+
+.phrase {
+    display: inline-block;
+    margin-bottom: 20px;
+    opacity: 1;
+    transition: opacity 1s ease; /* Smooth fade-out */
+}
+
+.phrase img.du-image {
+    vertical-align: middle;
+    width: 120px;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.phrase img.du-image-last {
+    vertical-align: middle;
+    width: 120px;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.phrase span {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-right: 5px; /* Add space between words */
+}
+
+.underline-animated {
+    position: relative;
+    opacity: 0;
+    font-style: normal;
+    display: inline-block;
+}
+
+.underline-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: black;
+    transition: width 1s ease;
+}
+
+.underline-animated.underlined {
+    font-style: italic;
+}
+
+.underline-animated.underlined::after {
+    width: 100%;
+}
+
+
+
+
             body, header, .resilience-vision-header {
                 text-align: left;
             }
@@ -397,7 +478,7 @@
 
         
             .story-paragraph {
-                font-size: 18px;
+                font-size: 16px;
                 padding-right: 0px;
                 text-align: left;
                 line-height: 2.0;
@@ -407,17 +488,22 @@
             }
 
             .david-paragraph {       
-                font-size: 15px;
+                font-size: 16px;
                 padding-top: 15px;     
                 padding-left: 5%;    
-                font-size: 18px;
+                font-size: 16px;
                 font-family: 'Calibri Light', sans-serif;
                 line-height: 1.8;
                 text-align: left;
                 line-height: 2.0;
-                opacity: 1; /* Hidden initially */
+                opacity: 0; /* Hidden initially */
                 transform: translateY(-20px); /* Slightly above its position */
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
+            }
+
+            .david-paragraph.animate {
+             opacity: 1; /* Fully visible */
+             transform: translateY(0); /* Move to its original position */
             }
 
             
@@ -488,7 +574,7 @@
  
             .business-plan-header {
                 font-size: 28pt;
-                padding-left: 20px;
+                padding-left: 15px;
                 line-height: 0px;
             }
  
@@ -502,7 +588,7 @@
                 line-height: 2.2;
                 font-size: 16px;
                 padding-left: 5%;
-                padding-right: 7.5%;
+                padding-right: 10%;
                 opacity: 0;
                 transform: translateY(0px); /* Slightly above its position */
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
@@ -516,7 +602,7 @@
             .vertical-line-container {
             display: flex;
             align-items: flex-start;
-            padding-left: 2.5%; /* Match the padding of business-plan-paragraph */
+            padding-left: 5%; /* Match the padding of business-plan-paragraph */
             position: relative;
         
             }
@@ -974,6 +1060,7 @@
         <section id="home">
             <div class="video-container">
                 <video src="Night.mov" alt="Night" autoplay muted loop></video>
+                <div class="overlay"></div>
             </div>
  
             <div class="business-plan-header">
@@ -986,7 +1073,6 @@
                 <div class="business-plan-paragraph">
                     <p>Dumore is an investment group and asset manager dedicated to democratizing access to private real estate investments while building a geographically diverse portfolio across a range of CRE asset classes and risk profiles. Our mission is to create opportunities for investors of all sizes to participate in high-quality, well-researched commercial real estate opportunities that generate long-term value.</p>
                     <p>Currently, Dumore is focused on revitalizing the aging multifamily housing stock in Long Beach, CA, a market poised for growth due to its proximity to major employment hubs and increasing demand for updated, affordable housing. By repositioning these properties through thoughtful renovations and operational efficiencies, Dumore aims to enhance the living experience for tenants while delivering sustainable returns for investors.</p>
-                    <p>Looking ahead, Dumore plans to expand its portfolio across other high-potential markets and asset classes, ensuring diversification and resilience while staying true to its commitment to accessible and impactful real estate investments.</p>
                 </div>
             </div>
             
@@ -1071,6 +1157,109 @@
             nav.classList.toggle('open');
             icon.classList.toggle('open');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.querySelector('.overlay');
+
+    const phrases = [
+        `<span>We</span> <img src="Du.png" alt="Du image" class="du-image"> <span>for</span> <span class="underline-animated">you</span>`,
+        `<span>Presenting</span> <span class="underline-animated">Concisely</span>`,
+        `<span>Reporting</span> <span class="underline-animated">Clearly</span>`,
+        `<span>Let’s</span> <img src="Du.png" alt="Du image" class="du-image">`
+    ];
+
+    let currentIndex = 0;
+
+    function createLetterAnimation(phraseHTML, isLastPhrase) {
+        const container = document.createElement('div');
+        container.classList.add('phrase');
+
+        // Parse the HTML content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = phraseHTML;
+
+        // Add spans for each letter and spaces
+        tempDiv.childNodes.forEach((node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const words = node.textContent.split(' ');
+                words.forEach((word, i) => {
+                    Array.from(word).forEach((char) => {
+                        const span = document.createElement('span');
+                        span.textContent = char;
+                        span.className = 'letter';
+                        container.appendChild(span);
+                    });
+
+                    // Add space after the word
+                    if (i < words.length - 1) {
+                        const space = document.createElement('span');
+                        space.textContent = ' ';
+                        space.className = 'letter';
+                        container.appendChild(space);
+                    }
+                });
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                // Handle inline elements (e.g., "Du" image or underline)
+                const elementClone = node.cloneNode(true);
+                elementClone.style.opacity = '0';
+                elementClone.style.transition = 'opacity 1s ease';
+
+                if (node.tagName === 'IMG' && isLastPhrase) {
+                    elementClone.classList.add('du-image-last'); // Special behavior for last phrase
+                } else if (node.tagName === 'SPAN' && node.classList.contains('underline-animated')) {
+                    elementClone.classList.add('underline-animated');
+                }
+
+                container.appendChild(elementClone);
+            }
+        });
+
+        return container;
+    }
+
+    function displayPhrase(index) {
+        overlay.innerHTML = '';
+        const phraseHTML = phrases[index];
+        const isLastPhrase = index === phrases.length - 1;
+        const phraseContainer = createLetterAnimation(phraseHTML, isLastPhrase);
+        overlay.appendChild(phraseContainer);
+
+        // Animate letters and elements
+        setTimeout(() => {
+            let delay = 0;
+            Array.from(phraseContainer.children).forEach((child) => {
+                if (!child.classList.contains('du-image-last') && !child.classList.contains('underline-animated')) {
+                    child.style.opacity = '1';
+                    child.style.transition = `opacity 0.3s ease ${delay}s`;
+                    delay += 0.1;
+                } else if (child.classList.contains('underline-animated')) {
+                    setTimeout(() => {
+                        child.style.opacity = '1';
+                        child.classList.add('underlined'); // Add underline animation
+                    }, delay * 1000);
+                } else if (child.classList.contains('du-image-last')) {
+                    setTimeout(() => {
+                        child.style.opacity = '1'; // Fade in "Du" image after "Let’s"
+                    }, delay * 1000 + 500);
+                }
+            });
+        }, 100);
+
+        // Schedule fade-out and next phrase
+        if (index < phrases.length - 1) {
+            setTimeout(() => {
+                phraseContainer.style.transition = 'opacity 1s ease';
+                phraseContainer.style.opacity = '0';
+                setTimeout(() => displayPhrase(index + 1), 1000); // Wait for fade-out
+            }, 2000); // Display time reduced to 2 seconds
+        }
+    }
+
+    displayPhrase(currentIndex);
+});
+
+
+ 
 
 
         function setupObservers() {
