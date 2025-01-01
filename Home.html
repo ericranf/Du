@@ -407,6 +407,7 @@
     height: auto;
     margin-left: 5px;
     margin-right: 5px;
+    margin-top: -10px;
     opacity: 0;
     transition: opacity 1s ease;
 }
@@ -415,6 +416,7 @@
     vertical-align: middle;
     width: 120px;
     height: auto;
+    margin-top: -10px;
     margin-left: 5px;
     margin-right: 5px;
     opacity: 0;
@@ -665,6 +667,19 @@
             nav a:hover {
                 color: #ddd;
             }
+
+
+            #eric-image {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0); /* Start fully hidden from the bottom */
+    transition: clip-path 2s ease, opacity 2s ease; /* Smooth transition */
+}
+
+/* When the image is in view */
+#eric-image.animate {
+    opacity: 1;
+    clip-path: inset(0 0 0 0); /* Fully reveal the image */
+}
  
             .david-image {
                 width: 100%;
@@ -1162,10 +1177,10 @@
     const overlay = document.querySelector('.overlay');
 
     const phrases = [
-        `<span>We</span> <img src="Du-removebg-preview (3).png" alt="Du image" class="du-image"> <span>for</span> <span class="underline-animated">you</span>`,
+        `<span>We</span> <img src="Du.png" alt="Du image" class="du-image"> <span>for</span> <span class="underline-animated underline">you</span>`,
         `<span>Presenting</span> <span class="underline-animated">Concisely</span>`,
         `<span>Reporting</span> <span class="underline-animated">Clearly</span>`,
-        `<span>Let’s</span> <img src="Du.png" alt="Du image" class="du-image">`
+        `<span>Let’s</span> <img src="Du.png" alt="Du image" class="du-image-last">`
     ];
 
     let currentIndex = 0;
@@ -1174,11 +1189,9 @@
         const container = document.createElement('div');
         container.classList.add('phrase');
 
-        // Parse the HTML content
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = phraseHTML;
 
-        // Add spans for each letter and spaces
         tempDiv.childNodes.forEach((node) => {
             if (node.nodeType === Node.TEXT_NODE) {
                 const words = node.textContent.split(' ');
@@ -1189,8 +1202,6 @@
                         span.className = 'letter';
                         container.appendChild(span);
                     });
-
-                    // Add space after the word
                     if (i < words.length - 1) {
                         const space = document.createElement('span');
                         space.textContent = ' ';
@@ -1199,13 +1210,12 @@
                     }
                 });
             } else if (node.nodeType === Node.ELEMENT_NODE) {
-                // Handle inline elements (e.g., "Du" image or underline)
                 const elementClone = node.cloneNode(true);
                 elementClone.style.opacity = '0';
                 elementClone.style.transition = 'opacity 1s ease';
 
                 if (node.tagName === 'IMG' && isLastPhrase) {
-                    elementClone.classList.add('du-image-last'); // Special behavior for last phrase
+                    elementClone.classList.add('du-image-last');
                 } else if (node.tagName === 'SPAN' && node.classList.contains('underline-animated')) {
                     elementClone.classList.add('underline-animated');
                 }
@@ -1245,21 +1255,40 @@
             });
         }, 100);
 
-        // Schedule fade-out and next phrase
-        if (index < phrases.length - 1) {
-            setTimeout(() => {
-                phraseContainer.style.transition = 'opacity 1s ease';
-                phraseContainer.style.opacity = '0';
-                setTimeout(() => displayPhrase(index + 1), 1000); // Wait for fade-out
-            }, 2000); // Display time reduced to 2 seconds
-        }
+        // Schedule fade-out
+        setTimeout(() => {
+            phraseContainer.style.opacity = '0'; // Fade out smoothly
+            phraseContainer.style.transition = 'opacity 1s ease';
+            if (index < phrases.length - 1) {
+                setTimeout(() => displayPhrase(index + 1), 1000); // Wait for fade-out before next phrase
+            }
+        }, 3000); // Adjust time to display the phrase
     }
 
     displayPhrase(currentIndex);
 });
 
 
- 
+
+
+
+/Eric image/
+document.addEventListener('DOMContentLoaded', () => {
+    const ericImage = document.querySelector('#eric-image');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                ericImage.classList.add('animate'); // Add the class to trigger animation
+            }
+        });
+    }, { threshold: 0.1 }); // Trigger when 10% of the image is in view
+
+    observer.observe(ericImage);
+});
+
+
+
 
 
         function setupObservers() {
