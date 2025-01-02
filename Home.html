@@ -349,7 +349,7 @@
     flex-direction: row;
     align-items: flex-start;
     position: relative; /* Ensures the line is positioned relative to this container */
-    padding-left: 20px; /* Adjust spacing */
+    padding-left: 0px; /* Adjust spacing */
 }
 
 .vertical-line-resilience {
@@ -464,7 +464,7 @@
             }
             
             .story-paragraph {
-            padding-left: 5%;
+            padding-left: 0%;
             text-align: left;
             }
 
@@ -489,14 +489,34 @@
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
             }
 
+           .Insights-header{
+            padding-left: 5%;
+            font-size: 35px;
+            margin-top: 50px;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            color: black;
+            margin-bottom: 0;
+            line-height: 0;
+
+           }
+            .Disc-subheader{
+                padding-left: 5%;
+                font-family: 'Calibri Light';
+                font-size: 25px;
+                text-align: left;
+                line-height: 0.5;
+                padding-bottom: -35px;
+            }
+ 
+
             .david-paragraph {       
                 font-size: 16px;
-                padding-top: 15px;     
+                text-align: left;
+                padding-top: 0px;     
                 padding-left: 5%;    
                 font-size: 16px;
                 font-family: 'Calibri Light', sans-serif;
-                line-height: 1.8;
-                text-align: left;
                 line-height: 2.0;
                 opacity: 0; /* Hidden initially */
                 transform: translateY(-20px); /* Slightly above its position */
@@ -515,14 +535,15 @@
                align-items: flex-start;
                position: relative; /* Ensures the line is positioned relative to this container */
                padding-left: 0px; /* Adjust spacing */
+               margin-left: -20px;
             }
 
          .vertical-line-david {
          border-left: 4px solid black; /* Adjust thickness/color as needed */
-         margin-right: 10px; /* Space between the line and the text */
+         margin-right: 50px; /* Space between the line and the text */
          height: 0; /* Allow dynamic height adjustment */
          position: absolute; /* Absolute positioning within the container */
-         top: 125px; /* Start from the top */
+         top: 132px; /* Start from the top */
           bottom: 10px; /* Dynamic bottom offset */
          left: 0; /* Align with the left edge */
          width: 0; /* Vertical line has no width */
@@ -531,10 +552,10 @@
         }
 
 .vertical-line-david.animate {
-    height: calc(100% - 196px); /* Set dynamic height to match container */
+    height: calc(100% - 187px); /* Set dynamic height to match container */
 }
 
-            .vertical-line-container-resilience {
+.vertical-line-container-resilience {
                display: flex;
                flex-direction: row;
                align-items: flex-start;
@@ -544,11 +565,12 @@
 
          .vertical-line-resilience {
          border-left: 4px solid black; /* Adjust thickness/color as needed */
-         margin-right: 10px; /* Space between the line and the text */
+         margin-right: 20px; /* Space between the line and the text */
+         margin-left: -20px;
          height: 0; /* Allow dynamic height adjustment */
          position: absolute; /* Absolute positioning within the container */
-         top: 125px; /* Start from the top */
-          bottom: 10px; /* Dynamic bottom offset */
+         top: 128px; /* Start from the top */
+          bottom: 170px; /* Dynamic bottom offset */
          left: 0; /* Align with the left edge */
          width: 0; /* Vertical line has no width */
          transition: height 2.5s ease-in-out; /* Add smooth animation */
@@ -556,7 +578,7 @@
         }
 
 .vertical-line-resilience.animate {
-    height: calc(100% - 196px); /* Set dynamic height to match container */
+    height: calc(100% - 182px); /* Set dynamic height to match container */
 }
 
             .story-paragraph.animate {
@@ -615,7 +637,7 @@
             margin-right: 20px; /* Space between the line and the text */
             position: absolute;
             height: 0;
-            top: 44px;
+            top: 47px;
             bottom: auto;
             transition: height 4s ease-in-out; /* Add smooth animation */
             overflow: hidden; /* Ensure no content is visible initially */
@@ -906,6 +928,8 @@
 /* Transition for the input/textarea underline */
 .contact-form-section input, 
 .contact-form-section textarea {
+    -webkit-appearance: none;
+
     position: relative;
 }
 
@@ -1108,7 +1132,6 @@
             
                 <div class="image-section-Eric">
                     <img src="Eric.PNG" alt="Eric" id="eric-image" />
-                    <div class="text-section">
                         <div class="vertical-line-container-resilience">
                             <div class="vertical-line-resilience"></div>
                             <div>
@@ -1127,15 +1150,14 @@
  
                 
               <div class="image-section-David">
-                <img class="david-image" src="David.jpg" alt="David" />
-                 <div class="text-section">               
+                <img class="david-image" src="David.jpg" alt="David" />    
                   <div class="vertical-line-container-david">
                         <div class="vertical-line-david"></div> <!-- Vertical line specific to the David section -->
                         <div class="text-section">
-                            <div class="resilience-vision-header">
+                            <div class="Insights-header">
                                 <p>Gaining Insights</p>
                             </div>
-                            <div class="our-story-subheader">
+                            <div class="Disc-subheader">
                                 <p>Discussions</p>
                             </div>
                             <p class="david-paragraph">
@@ -1298,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ericImage.classList.add('animate'); // Add the class to trigger animation
             }
         });
-    }, { threshold: 0.2 }); // Trigger when 10% of the container is in view
+    }, { threshold: 0.5 }); // Trigger when 10% of the container is in view
 
     observer.observe(parentContainer);
 });
@@ -1315,7 +1337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 davidImage.classList.add('animate'); // Add the class to trigger animation
             }
         });
-    }, { threshold: 0.2 }); // Trigger when 10% of the container is in view
+    }, { threshold: 0.5 }); // Trigger when 10% of the container is in view
 
     observer.observe(davidContainer);
 });
