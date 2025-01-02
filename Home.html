@@ -668,8 +668,10 @@
                 color: #ddd;
             }
 
-
             #eric-image {
+                width: auto;
+    max-width: 100%; /* Make it responsive */
+    height: auto; /* Maintain aspect ratio */
     opacity: 0;
     clip-path: inset(100% 0 0 0); /* Start fully hidden from the bottom */
     transition: clip-path 2s ease, opacity 2s ease; /* Smooth transition */
@@ -680,25 +682,39 @@
     opacity: 1;
     clip-path: inset(0 0 0 0); /* Fully reveal the image */
 }
+
  
             .david-image {
                 width: 100%;
                 height: auto;
                 margin-top: 100px;
-            }
+                opacity: 0;
+    clip-path: inset(100% 0 0 0); /* Start fully hidden from the bottom */
+    transition: clip-path 2s ease, opacity 2s ease; /* Smooth transition */
+}
+
+/* When the image is in view */
+.david-image.animate {
+    opacity: 1;
+    clip-path: inset(0 0 0 0); /* Fully reveal the image */
+}
+
 
             .image-section-David {
-              padding-left: 5%;
-              padding-right: 5%;
+              padding-left: 10%;
+              padding-right: 10%;
             }
  
-            .image-section img {
-                width: 100%;
-                height: auto;
-                margin-right: auto;
-                margin-left: auto;
-            }
- 
+            .image-section-Eric {
+                display: flex;
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center the content */
+    text-align: center; /* Center-align text if needed */
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 80px;
+}
         }
  
          /* Contact Form Section */
@@ -1091,7 +1107,7 @@
                 </div>
             </div>
             
-                <div class="image-section">
+                <div class="image-section-Eric">
                     <img src="Eric.PNG" alt="Eric" id="eric-image" />
                     <div class="text-section">
                         <div class="vertical-line-container-resilience">
@@ -1272,9 +1288,10 @@
 
 
 
-/Eric image/
+//Eric image
 document.addEventListener('DOMContentLoaded', () => {
     const ericImage = document.querySelector('#eric-image');
+    const parentContainer = ericImage.closest('.image-section-Eric'); // Adjust this selector to the image's parent container
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -1282,11 +1299,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 ericImage.classList.add('animate'); // Add the class to trigger animation
             }
         });
-    }, { threshold: 0.1 }); // Trigger when 10% of the image is in view
+    }, { threshold: 0.2 }); // Trigger when 10% of the container is in view
 
-    observer.observe(ericImage);
+    observer.observe(parentContainer);
 });
 
+
+//David image
+document.addEventListener('DOMContentLoaded', () => {
+    const davidImage = document.querySelector('.david-image');
+    const davidContainer = davidImage.closest('.image-section-David'); // Adjusted container selector
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                davidImage.classList.add('animate'); // Add the class to trigger animation
+            }
+        });
+    }, { threshold: 0.2 }); // Trigger when 10% of the container is in view
+
+    observer.observe(davidContainer);
+});
 
 
 
