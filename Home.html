@@ -394,6 +394,7 @@
     z-index: 1;
 }
 
+
 .phrase {
     display: inline-block;
     margin-bottom: 20px;
@@ -598,8 +599,8 @@
  
             .business-plan-header {
                 font-size: 28pt;
-                padding-left: 15px;
                 line-height: 0px;
+                padding-left:7.75%;
             }
  
  
@@ -830,6 +831,14 @@
 
             }
  
+            .sub-header1 {
+                font-size: 50px;
+                font-style: normal;
+                text-align: right;
+                font-family: 'Calibri Light', sans-serif;
+                padding-top: 12px;
+                padding-right: 8%;  
+            }
             .connect-subheader {
                 font-size: 25px;
                 padding-left: 7.25%;
@@ -907,7 +916,17 @@
         /* Media Query for Mobile Screens */
         @media (max-width: 768px) {
 
+            .Clouds-container {
+    text-align: center; /* Centers the image horizontally */
+    margin-top: 20px; /* Adds space above the image */
+}
 
+.Clouds-image {
+    width: 350px; /* Adjust width as needed */
+    margin-top: 50px;
+    height: auto; /* Maintain aspect ratio */
+    display: inline-block; /* Ensures image aligns as inline */
+}
 
 
             .contact-form-section {
@@ -1112,23 +1131,21 @@
  
     <main>
         <section id="home">
-            <div class="video-container">
-                <video src="Night.mov" alt="Night" autoplay muted loop></video>
-                <div class="overlay"></div>
-            </div>
  
             <div class="business-plan-header">
-                <p style="display: inline;">What is</p>
-                <img src="Du.png" alt="Du"style="vertical-align: middle; display: inline; margin-top: -10px;">
-            </div>
- 
-            <div class="vertical-line-container">
-                <div class="vertical-line"></div>
-                <div class="business-plan-paragraph">
-                    <p>Dumore is an investment group and asset manager dedicated to democratizing access to private real estate investments while building a geographically diverse portfolio across a range of CRE asset classes and risk profiles. Our mission is to create opportunities for investors of all sizes to participate in high-quality, well-researched commercial real estate opportunities that generate long-term value.</p>
-                    <p>Currently, Dumore is focused on revitalizing the aging multifamily housing stock in Long Beach, CA, a market poised for growth due to its proximity to major employment hubs and increasing demand for updated, affordable housing. By repositioning these properties through thoughtful renovations and operational efficiencies, Dumore aims to enhance the living experience for tenants while delivering sustainable returns for investors.</p>
+                <p style="display: inline;">We belive in ...</p>
+                <div class="sub-header1">
+                    <p>nurturing</p>
+                    <p>relationships</p>
                 </div>
             </div>
+
+            <div class="Clouds-container">
+                <img src="Clouds.jpg" alt="Clouds" class="Clouds-image">
+            </div>
+        </div>
+ 
+
             
                 <div class="image-section-Eric">
                     <img src="Eric.PNG" alt="Eric" id="eric-image" />
