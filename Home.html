@@ -43,7 +43,6 @@
             display: flex;
             gap: 30px;
             justify-content: flex-end;
-            background-color: rgba(3, 3, 3, 1); /* This controls the background color */
             width: 100%;
         }
  
@@ -897,6 +896,8 @@
     width: 100%; /* Full underline */
 }
 
+
+
 }
 
 
@@ -921,19 +922,38 @@
         @media (max-width: 768px) {
 
             .Clouds-container {
-    text-align: center; /* Centers the image horizontally */
-    margin-top: 20px; /* Adds space above the image */
-    margin-right: 9%;
-    margin-left: 9%;
+                text-align: center; /* Centers the content */
+    margin-top: 20px; /* Adds space above the container */
+    padding-left: 9%; /* Adds 9% padding on the left */
+    padding-right: 9%; /* Adds 9% padding on the right */
+    box-sizing: border-box; /* Ensures padding does not affect the width */
 
 }
 
 .Clouds-image {
-    width: 350px; /* Adjust width as needed */
     margin-top: 40px;
+    width: 100%; /* Adjusts the image width to fit inside the container */
+    max-width: 500px; /* Optional: Sets a maximum width for the image */
+    height: auto; /* Maintains the aspect ratio */
+    display: inline-block; /* Ensures the image aligns as inline */
+}
 
-    height: auto; /* Maintain aspect ratio */
-    display: inline-block; /* Ensures image aligns as inline */
+.Clouds-caption {
+text-align: left;
+   font-family: 'Calibri Light', sans-serif; /* Matches other text on the page */
+    font-size: 28px; /* Adjust the font size */
+    color: black; /* Text color */
+    margin-top: 20px; /* Space between image and text */
+    line-height: 1.4; /* Adjust line height for readability */
+}
+.Clouds-caption2 {
+text-align: left;
+   font-family: 'Calibri Light', sans-serif; /* Matches other text on the page */
+    font-size: 18px; /* Adjust the font size */
+    font-style: italic;
+    color: black; /* Text color */
+    margin-top: -18px; /* Space between image and text */
+    line-height: 1.4; /* Adjust line height for readability */
 }
 
 
@@ -1150,7 +1170,15 @@
 
             <div class="Clouds-container">
                 <img src="Clouds.jpg" alt="Clouds" class="Clouds-image">
-            </div>
+
+                    <p class="Clouds-caption">
+                        <span class="line-1">We add value to</span><br>
+                        <span class="line-2">underperforming assets in</span><br>
+                        <span class="line-3">growing markets</span>
+                    </p>
+                    <p class="Clouds-caption2">
+                        Through thoughtful renovations and meeting the demands of today’s tenants
+                    </p>
         </div>
  
 
