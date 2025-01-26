@@ -122,16 +122,7 @@
             object-fit: cover;
         }
  
-        .business-plan-header {
-            font-family: 'Times New Roman', serif;
-            font-size: 30pt;
-            text-align: left;
-            margin-top: 60px;
-            color: black;
-            padding-left: 200px;
-            font-style: italic;
-            line-height: 1.2;
-        }
+
  
         .business-plan-paragraph {
             font-family: 'Calibri Light', sans-serif;
@@ -597,27 +588,9 @@
             }
  
  
-            .business-plan-header {
-                font-size: 28pt;
-                line-height: 0px;
-                padding-left:7.75%;
-            }
+
  
- 
-            .business-plan-header img {
-                height: 50px;
-            }
- 
-            .business-plan-paragraph {
-                font-family: 'Calibri Light';
-                line-height: 2.2;
-                font-size: 16px;
-                padding-left: 5%;
-                padding-right: 10%;
-                opacity: 0;
-                transform: translateY(0px); /* Slightly above its position */
-                transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
-            }
+
 
             .business-plan-paragraph.animate {
              opacity: 1; /* Fully visible */
@@ -922,20 +895,17 @@
         @media (max-width: 768px) {
 
             .Clouds-container {
-                text-align: center; /* Centers the content */
-    margin-top: 20px; /* Adds space above the container */
-    padding-left: 9%; /* Adds 9% padding on the left */
-    padding-right: 9%; /* Adds 9% padding on the right */
-    box-sizing: border-box; /* Ensures padding does not affect the width */
-
+    text-align: center;
+    margin-top: 0px;
+    padding: 0; /* Remove padding to avoid adding space around the image */
+    box-sizing: border-box;
 }
 
 .Clouds-image {
-    margin-top: 40px;
-    width: 100%; /* Adjusts the image width to fit inside the container */
-    max-width: 500px; /* Optional: Sets a maximum width for the image */
-    height: auto; /* Maintains the aspect ratio */
-    display: inline-block; /* Ensures the image aligns as inline */
+    width: 100vw; /* Set the width to 100% of the viewport width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: none; /* Remove the default max-width constraint */
+    display: block; /* Ensure the image behaves like a block-level element */
 }
 
 .Clouds-caption {
@@ -949,11 +919,63 @@ text-align: left;
 .Clouds-caption2 {
 text-align: left;
    font-family: 'Calibri Light', sans-serif; /* Matches other text on the page */
-    font-size: 18px; /* Adjust the font size */
-    font-style: italic;
+    font-size: 20px; /* Adjust the font size */
     color: black; /* Text color */
     margin-top: -18px; /* Space between image and text */
     line-height: 1.4; /* Adjust line height for readability */
+}
+
+.top-banner {
+    background-color: #333; /* Dark gray background */
+    color: white; /* Text color to contrast with background */
+    padding: 50px 20px ; /* Adds padding around the content */
+    padding-bottom: 25px;
+
+}
+
+
+.business-plan-header {
+    text-align: left;
+
+}
+
+
+
+.business-plan-header h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-bottom: 0px;
+    margin-top: -20px;
+    font-weight: 100;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 35px;
+    color: white
+}
+
+.business-plan-header h2 {
+    font-family: 'Calibri Light', sans-serif;
+    line-height: 1.6;
+    font-weight: 100;
+    max-width: 100%; /* Limits the width of the text for readability */
+    margin: 0 auto; /* Centers the text block */
+    padding-left: 10px;
+    text-align: left;
+    font-style: normal;
+    color: #ffffff; /* Soft gray for less emphasis */
+    font-size: 30px    
+}
+
+.business-plan-header p {
+    font-family: 'Calibri Light', sans-serif;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-top: 10px;
+    line-height: 1.6;
+    max-width: 100%; /* Limits the width of the text for readability */
+    margin: 0 auto; /* Centers the text block */
+    color: #ffffff; /* Soft gray for less emphasis */
+    font-style: normal;
 }
 
 
@@ -1159,14 +1181,14 @@ text-align: left;
  
     <main>
         <section id="home">
- 
-            <div class="business-plan-header">
-                <p style="display: inline;">We belive in ...</p>
-                <div class="sub-header1">
-                    <p>nurturing</p>
-                    <p>relationships</p>
+
+            <section class="top-banner">
+                <div class="business-plan-header">
+                    <h1>We believe in …</h1>
+                    <h2>nurturing relationships</h2>
+                    <p>Success in real estate is driven by the connections we foster. At Dumore, we place people first, building relationships founded on trust, transparency, and a shared vision for growth.</p>
                 </div>
-            </div>
+            </section>
 
             <div class="Clouds-container">
                 <img src="Clouds.jpg" alt="Clouds" class="Clouds-image">
