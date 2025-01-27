@@ -913,10 +913,10 @@
 .Clouds-container::after {
     content: ''; /* Necessary for the pseudo-element to render */
     position: absolute; /* Position relative to the container */
-    bottom: -200px; /* Align it to the bottom of the container */
+    bottom: -100px; /* Align it to the bottom of the container */
     left: 0;
     width: 100%; /* Cover the entire width of the container */
-    height: 200px; /* Height of the gradient */
+    height: 100px; /* Height of the gradient */
     background: linear-gradient(to bottom, rgba(51, 51, 51, 1) 0%, rgba(255, 255, 255, 0) 100%);
     pointer-events: none; /* Ensure the gradient does not interfere with user interactions */
     z-index: 1; /* Place it above the container's background but below other content */
@@ -996,7 +996,7 @@
 .dumore-content {
     position: relative;
     display: inline-block; /* Ensures the content wraps tightly around the logo */
-    padding-top: 250px;
+    padding-top: 150px;
     align-items: center;
     width: 250px; /* Set a fixed width matching the logo's size for consistent layout */
     height: auto;
@@ -1009,7 +1009,7 @@
     font-size: 40px;
     color: #000;
     position: absolute;
-    top: 155px; /* Adjust vertical alignment above "Du" */
+    top: 55px; /* Adjust vertical alignment above "Du" */
     left: 0px; /* Adjust horizontal alignment to the left of the "D" */
 }
 
@@ -1028,7 +1028,7 @@
     color: #000;
     position: absolute;
     letter-spacing: 2px;
-    top: 290px; /* Adjust position under "Du" */
+    top: 190px; /* Adjust position under "Du" */
     left: 90px; /* Shift slightly to the right of the "D" */
 }
 
@@ -1038,8 +1038,8 @@
     font-size: 22px;
     font-style: italic;
     color: #000;
-    margin-top: 90px; /* Add spacing below "for our ..." */
-    text-align: center;
+    margin-top: 40px; /* Add spacing below "for our ..." */
+    text-align: right;
 }
 
 /* Paragraph Styling */
@@ -1048,8 +1048,8 @@
     font-size: 16px;
     color: #000;
     line-height: 1.5;
-    margin: 20px 0;
-    text-align: center;
+    margin: 0px 0;
+    text-align: left;
 }
 
 /* "Learn More" Link Styling */
