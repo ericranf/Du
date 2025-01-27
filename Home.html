@@ -989,16 +989,19 @@
 
 
 .dumore-section {
-    text-align: center;
+    text-align: center; /* Ensures inline-block element is centered */
     padding: 40px 20px;
-    padding-top: 250px;
-    background-color: #ffffff; /* White background */
 }
 
 .dumore-content {
     position: relative;
-    display: inline-block; /* Ensure elements stack nicely around the logo */
+    display: inline-block; /* Ensures the content wraps tightly around the logo */
+    padding-top: 250px;
+    align-items: center;
+    width: 250px; /* Set a fixed width matching the logo's size for consistent layout */
+    height: auto;
 }
+
 
 /* "We" Styling */
 .dumore-header1 {
@@ -1006,16 +1009,16 @@
     font-size: 40px;
     color: #000;
     position: absolute;
-    top: -85px; /* Adjust vertical alignment above "Du" */
-    left: 30px; /* Adjust horizontal alignment to the left of the "D" */
+    top: 155px; /* Adjust vertical alignment above "Du" */
+    left: 0px; /* Adjust horizontal alignment to the left of the "D" */
 }
 
 /* Du Logo Styling */
 .dumore-logo {
-    width: 250px; /* Adjust the size of the logo */
+    width: 250px; /* Keep the logo size consistent */
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the logo */
+    margin: 0 auto;
 }
 
 /* "for our ..." Styling */
@@ -1024,8 +1027,8 @@
     font-size: 25px;
     color: #000;
     position: absolute;
-    top: 35px; /* Adjust position under "Du" */
-    left: 155px; /* Shift slightly to the right of the "D" */
+    top: 0px; /* Adjust position under "Du" */
+    left: 0px; /* Shift slightly to the right of the "D" */
 }
 
 /* "investors" Styling */
