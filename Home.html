@@ -910,17 +910,7 @@
 }
 
 
-.Clouds-container::after {
-    content: ''; /* Necessary for the pseudo-element to render */
-    position: absolute; /* Position relative to the container */
-    bottom: -125px; /* Align it to the bottom of the container */
-    left: 0;
-    width: 100%; /* Cover the entire width of the container */
-    height: 125px; /* Height of the gradient */
-    background: linear-gradient(to bottom, rgba(51, 51, 51, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    pointer-events: none; /* Ensure the gradient does not interfere with user interactions */
-    z-index: 1; /* Place it above the container's background but below other content */
-}
+
 
 .Clouds-container::before {
     content: ''; /* This creates the shadow element */
@@ -1080,9 +1070,9 @@
     font-family: 'Calibri Light', sans-serif;
     font-size: 16px;
     color: #000;
-    margin-left: 7%;
-    margin-right: 7%;
-    margin-top: -50px;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: -40px;
     line-height: 1.5;
     text-align: left;
 }
