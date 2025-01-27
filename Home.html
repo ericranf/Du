@@ -711,7 +711,7 @@
     text-align: center; /* Center-align text if needed */
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 80px;
+    padding-top: 200px;
 }
         }
  
@@ -899,6 +899,7 @@
     margin-top: 0px;
     padding: 0; /* Remove padding to avoid adding space around the image */
     box-sizing: border-box;
+    position: relative; /* Necessary for positioning the ::after element */
 }
 
 .Clouds-image {
@@ -908,22 +909,27 @@
     display: block; /* Ensure the image behaves like a block-level element */
 }
 
-.Clouds-caption {
-text-align: left;
-   font-family: 'Calibri Light', sans-serif; /* Matches other text on the page */
-    font-size: 28px; /* Adjust the font size */
-    color: black; /* Text color */
-    margin-top: 20px; /* Space between image and text */
-    line-height: 1.4; /* Adjust line height for readability */
+
+.Clouds-container::after {
+    content: ''; /* Necessary for the pseudo-element to render */
+    position: absolute; /* Position relative to the container */
+    bottom: -150px; /* Align it to the bottom of the container */
+    left: 0;
+    width: 100%; /* Cover the entire width of the container */
+    height: 150px; /* Height of the gradient */
+    background: linear-gradient(to bottom, #333 0%, white 100%);
+    pointer-events: none; /* Ensure the gradient does not interfere with user interactions */
+    z-index: 1; /* Place it above the container's background but below other content */
 }
-.Clouds-caption2 {
-text-align: left;
-   font-family: 'Calibri Light', sans-serif; /* Matches other text on the page */
-    font-size: 20px; /* Adjust the font size */
-    color: black; /* Text color */
-    margin-top: -18px; /* Space between image and text */
-    line-height: 1.4; /* Adjust line height for readability */
-}
+
+
+
+
+
+
+
+
+
 
 .top-banner {
     background-color: #333; /* Dark gray background */
@@ -1192,15 +1198,6 @@ text-align: left;
 
             <div class="Clouds-container">
                 <img src="Clouds.jpg" alt="Clouds" class="Clouds-image">
-
-                    <p class="Clouds-caption">
-                        <span class="line-1">We add value to</span><br>
-                        <span class="line-2">underperforming assets in</span><br>
-                        <span class="line-3">growing markets</span>
-                    </p>
-                    <p class="Clouds-caption2">
-                        Through thoughtful renovations and meeting the demands of today’s tenants
-                    </p>
         </div>
  
 
