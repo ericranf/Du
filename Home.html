@@ -980,6 +980,9 @@
     padding-left: 10px;
     text-align: left;
     font-style: normal;
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 1.5s ease, transform 0.5s ease;
     color: #ffffff; /* Soft gray for less emphasis */
     font-size: 30px    
 }
@@ -994,9 +997,26 @@
     max-width: 100%; /* Limits the width of the text for readability */
     margin: 0 auto; /* Centers the text block */
     color: #ffffff; /* Soft gray for less emphasis */
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 1.5s ease, transform 0s ease;
     font-style: normal;
 }
  
+
+/* Animate h2 */
+.business-plan-header h2.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s; /* Delay by 1 second */
+}
+
+/* Animate paragraph */
+.business-plan-header p.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1s; /* Delay by 1.5 seconds */
+}
 
 
 
@@ -1495,7 +1515,29 @@
     displayPhrase(currentIndex);
 });
 
+//Nurturing
+document.addEventListener("DOMContentLoaded", () => {
+    const businessPlanHeader = document.querySelector(".business-plan-header");
+    const h1 = businessPlanHeader.querySelector("h1");
+    const h2 = businessPlanHeader.querySelector("h2");
+    const p = businessPlanHeader.querySelector("p");
 
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Add animate class to elements
+                    h1.classList.add("animate");
+                    setTimeout(() => h2.classList.add("animate"), 0); // Delay by 1 second
+                    setTimeout(() => p.classList.add("animate"), 6); // Delay by 1.5 seconds
+                }
+            });
+        },
+        { threshold: 0.5 } // Trigger when 50% of the section is visible
+    );
+
+    observer.observe(businessPlanHeader);
+});
 
 
 
