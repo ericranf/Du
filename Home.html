@@ -1346,7 +1346,7 @@
                 <div class="business-plan-header">
                     <h1>We believe in …</h1>
                     <h2>nurturing relationships</h2>
-                    <p>Success in real estate is driven by the connections we foster. At Dumore, we place people first, building relationships founded on trust, transparency, and a shared vision for growth.</p>
+                    <p>At Dumore, we place people first, building relationships founded on trust, transparency, and a shared vision for growth.</p>
                 </div>
             </section>
 
@@ -1586,13 +1586,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => header1.classList.add('animate'), 0);
 
                     // Animate Du Logo
-                    setTimeout(() => logo.classList.add('animate'), 800);
+                    setTimeout(() => logo.classList.add('animate'), 200);
 
                     // Animate "for our"
-                    setTimeout(() => header2.classList.add('animate'), 1600);
+                    setTimeout(() => header2.classList.add('animate'), 400);
                 }
             });
-        }, { threshold: 0.65 }); // Trigger when 65% of content is in view
+        }, { threshold: 0.85 }); // Trigger when 65% of content is in view
 
         observer.observe(dumoreContent);
     });
