@@ -1020,7 +1020,11 @@
     transition-delay: 1.5s; /* Delay by 1.5 seconds */
 }
 
-
+.dumore-header1 span,
+.dumore-header2 span {
+    display: inline-block;
+    opacity: 0; /* Initially hidden */
+}
 
 
 .dumore-section {
@@ -1054,6 +1058,8 @@
     height: auto;
     display: block;
     margin: 0 auto;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.6s ease; /* Smooth fade-in for the logo */
 }
 
 /* "for our ..." Styling */
@@ -1549,6 +1555,55 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(businessPlanHeader);
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+        const dumoreContent = document.querySelector(".dumore-content");
+        const headerWe = document.querySelector(".dumore-header1");
+        const duLogo = document.querySelector(".dumore-logo");
+        const headerForOur = document.querySelector(".dumore-header2");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Animate "We" letter by letter
+                        const letters = Array.from(headerWe.textContent);
+                        headerWe.textContent = ""; // Clear the initial text
+                        letters.forEach((letter, index) => {
+                            const span = document.createElement("span");
+                            span.textContent = letter;
+                            span.style.opacity = "0";
+                            span.style.transition = `opacity 0.4s ease ${index * 0.2}s`;
+                            headerWe.appendChild(span);
+                            setTimeout(() => (span.style.opacity = "1"), index * 200);
+                        });
+
+                        // Fade in Du logo smoothly
+                        setTimeout(() => {
+                            duLogo.style.opacity = "1";
+                        }, letters.length * 200 + 300);
+
+                        // Animate "for our..." letter by letter
+                        setTimeout(() => {
+                            const words = "for our".split(""); // Ensures spacing between "for" and "our"
+                            headerForOur.textContent = ""; // Clear the initial text
+                            words.forEach((word, index) => {
+                                const span = document.createElement("span");
+                                span.textContent = word;
+                                span.style.opacity = "0";
+                                span.style.transition = `opacity 0.4s ease ${index * 0.2}s`;
+                                headerForOur.appendChild(span);
+                                if (word === " ") span.style.marginRight = "5px"; // Add space for " "
+                                setTimeout(() => (span.style.opacity = "1"), index * 200);
+                            });
+                        }, letters.length * 200 + 600);
+                    }
+                });
+            },
+            { threshold: 0.9 } // Trigger animation when 90% of the section is in view
+        );
+
+        observer.observe(dumoreContent);
+    });
 
 
 //Eric image
