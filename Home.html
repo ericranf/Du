@@ -1050,6 +1050,10 @@
     position: absolute;
     top: 5px; /* Adjust vertical alignment above "Du" */
     left: 0px; /* Adjust horizontal alignment to the left of the "D" */
+    opacity: 0; /* Start with 0 opacity */
+        transform: translateY(20px); /* Slightly below the original position */
+        transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade-in */
+
 }
 
 /* Du Logo Styling */
@@ -1059,8 +1063,18 @@
     display: block;
     margin: 0 auto;
     opacity: 0; /* Initially hidden */
-    transition: opacity 0.6s ease; /* Smooth fade-in for the logo */
+    opacity: 0; /* Start with 0 opacity */
+        transform: translateY(20px); /* Slightly below the original position */
+        transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade-in */
+
 }
+
+.dumore-header1.animate,
+    .dumore-logo.animate,
+    .dumore-header2.animate {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Return to original position */
+    }
 
 /* "for our ..." Styling */
 .dumore-header2 {
@@ -1071,6 +1085,10 @@
     letter-spacing: 2px;
     top: 140px; /* Adjust position under "Du" */
     left: 80px; /* Shift slightly to the right of the "D" */
+    opacity: 0; /* Start with 0 opacity */
+        transform: translateY(20px); /* Slightly below the original position */
+        transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade-in */
+    
 }
 
 /* "investors" Styling */
@@ -1555,52 +1573,26 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(businessPlanHeader);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-        const dumoreContent = document.querySelector(".dumore-content");
-        const headerWe = document.querySelector(".dumore-header1");
-        const duLogo = document.querySelector(".dumore-logo");
-        const headerForOur = document.querySelector(".dumore-header2");
+document.addEventListener('DOMContentLoaded', () => {
+        const dumoreContent = document.querySelector('.dumore-content');
+        const header1 = document.querySelector('.dumore-header1');
+        const logo = document.querySelector('.dumore-logo');
+        const header2 = document.querySelector('.dumore-header2');
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        // Animate "We" letter by letter
-                        const letters = Array.from(headerWe.textContent);
-                        headerWe.textContent = ""; // Clear the initial text
-                        letters.forEach((letter, index) => {
-                            const span = document.createElement("span");
-                            span.textContent = letter;
-                            span.style.opacity = "0";
-                            span.style.transition = `opacity 0.4s ease ${index * 0.2}s`;
-                            headerWe.appendChild(span);
-                            setTimeout(() => (span.style.opacity = "1"), index * 200);
-                        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Animate "We"
+                    setTimeout(() => header1.classList.add('animate'), 0);
 
-                        // Fade in Du logo smoothly
-                        setTimeout(() => {
-                            duLogo.style.opacity = "1";
-                        }, letters.length * 200 + 300);
+                    // Animate Du Logo
+                    setTimeout(() => logo.classList.add('animate'), 800);
 
-                        // Animate "for our..." letter by letter
-                        setTimeout(() => {
-                            const words = "for our".split(""); // Ensures spacing between "for" and "our"
-                            headerForOur.textContent = ""; // Clear the initial text
-                            words.forEach((word, index) => {
-                                const span = document.createElement("span");
-                                span.textContent = word;
-                                span.style.opacity = "0";
-                                span.style.transition = `opacity 0.4s ease ${index * 0.2}s`;
-                                headerForOur.appendChild(span);
-                                if (word === " ") span.style.marginRight = "5px"; // Add space for " "
-                                setTimeout(() => (span.style.opacity = "1"), index * 200);
-                            });
-                        }, letters.length * 200 + 600);
-                    }
-                });
-            },
-            { threshold: 0.9 } // Trigger animation when 90% of the section is in view
-        );
+                    // Animate "for our"
+                    setTimeout(() => header2.classList.add('animate'), 1600);
+                }
+            });
+        }, { threshold: 0.65 }); // Trigger when 65% of content is in view
 
         observer.observe(dumoreContent);
     });
