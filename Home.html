@@ -994,7 +994,7 @@
     font-family: 'Calibri Light', sans-serif;
     font-size: 16px;
     padding-left: 10px;
-    padding-right: 15px;
+    padding-right: 20px;
     padding-top: 25px;
     line-height: 1.6;
     max-width: 100%; /* Limits the width of the text for readability */
@@ -1100,7 +1100,14 @@
     color: #000;
     margin-top: 20px; /* Add spacing below "for our ..." */
     text-align: right;
+    opacity: 0; /* Start as hidden */
+    transition: opacity 1s ease; /* Smooth fade-in */
+    text-align: right;
 }
+
+
+
+
 
 /* Paragraph Styling */
 .dumore-paragraph {
@@ -1135,6 +1142,17 @@
 
 
 
+.tenants, .partners {
+    opacity: 0; /* Start as hidden */
+}
+
+.tenants {
+    top: 120px; /* Same vertical alignment as "investors" */
+}
+
+.partners {
+    top: 180px; /* Slightly below "tenants" */
+}
 
 
 
@@ -1179,6 +1197,66 @@
 .contact-form-section textarea:focus::after {
     width: 100%; /* Full underline */
 }
+
+
+
+
+
+.strategy-banner {
+    position: relative; /* Allows absolute positioning inside */
+    background-color: #333; /* Dark grey background */
+    color: white;
+    text-align: center;
+    padding: 50px 20px; /* Adjust padding */
+    margin-top: 175px;
+    overflow: visible; /* Ensures content outside the section remains visible */
+}
+
+.strategy-banner img {
+    width: 275px; /* Adjust size */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+    right: -40px;
+    top: -150px; /* Moves image upward outside the banner */
+}
+
+    .strategy-header {
+        font-family: 'Times New Roman', serif;
+        font-size: 30px;
+        text-align: left;
+        font-style: italic;
+        padding-left: 20px;
+        font-weight: normal;
+        margin-bottom: 10px;
+    }
+
+    .strategy-paragraph {
+        font-family: 'Calibri Light', sans-serif;
+        font-size: 18px;
+padding-left: 20px;
+        text-align: left;
+        font-weight: normal;
+        line-height: 1.6;
+        max-width: 600px; /* Limit text width */
+        margin: 0 auto 20px; /* Center text with space below */
+    }
+
+    .strategy-btn {
+        font-family: 'Times New Roman', serif;
+        font-size: 18px;
+        font-style: italic;
+        text-align: right;
+        background: none;
+        border: none;
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .strategy-btn:hover {
+        text-decoration: underline;
+    }
 
 
         }
@@ -1361,6 +1439,8 @@
                 <img src="Du.png" alt="Du logo" class="dumore-logo" />
                 <p class="dumore-header2">for our ...</p>
                 <p class="dumore-subheader">investors</p>
+                <p class="dumore-subheader tenants">tenants</p>
+                <p class="dumore-subheader partners">partners</p>
             </div>
         </section>
 
@@ -1374,7 +1454,17 @@
             </div>
         </section>
 
-            
+        <section class="strategy-banner">
+            <img src="Home.jpg" alt="Home">
+            <h2 class="strategy-header">Our Strategy</h2>
+            <p class="strategy-paragraph">
+                We add value to underperforming assets in growing markets. 
+                The best example of that would you like me to share your portfolio and you.
+            </p>
+            <button class="strategy-btn">Learn More</button>
+        </section>
+
+
                 <div class="image-section-Eric">
                     <img src="Eric.PNG" alt="Eric" id="eric-image" />
                         <div class="vertical-line-container-resilience">
@@ -1767,6 +1857,57 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(extraordinarySection);
 });
 
+
+
+///for investors
+document.addEventListener('DOMContentLoaded', () => {
+    const dumoreContent = document.querySelector('.dumore-content');
+    const header1 = document.querySelector('.dumore-header1');
+    const logo = document.querySelector('.dumore-logo');
+    const header2 = document.querySelector('.dumore-header2');
+    const tenants = document.querySelector('.tenants');
+    const partners = document.querySelector('.partners');
+    const investors = document.querySelector('.dumore-subheader');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Animate "We"
+                setTimeout(() => header1.classList.add('animate'), 0);
+
+                // Animate Du Logo
+                setTimeout(() => logo.classList.add('animate'), 200);
+
+                // Animate "for our"
+                setTimeout(() => header2.classList.add('animate'), 400);
+
+                // Animate "tenants"
+                setTimeout(() => {
+                    tenants.classList.add('animate');
+                }, 800); // Start after 0.8s
+
+                // Fade out "tenants" after 0.5s and fade in "partners"
+                setTimeout(() => {
+                    tenants.classList.remove('animate');
+                    partners.classList.add('animate');
+                }, 1300); // "tenants" disappears after 1.3s, "partners" fades in
+
+                // Fade out "partners" after 0.5s and fade in "investors"
+                setTimeout(() => {
+                    partners.classList.remove('animate');
+                    investors.classList.add('animate');
+                }, 1800); // "partners" disappears after 1.8s
+
+                // Keep "investors" visible
+                setTimeout(() => {
+                    investors.style.opacity = 1;
+                }, 2300); // Make "investors" stay visible
+            }
+        });
+    }, { threshold: 0.85 }); // Trigger when 85% of the content is in view
+
+    observer.observe(dumoreContent);
+});
 
 
 
