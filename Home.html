@@ -950,7 +950,6 @@
     color: white; /* Text color to contrast with background */
     padding: 50px 20px ; /* Adds padding around the content */
     padding-bottom: 30px;
-
 }
 
 
@@ -1031,6 +1030,7 @@
 .dumore-section {
     text-align: center; /* Ensures inline-block element is centered */
     padding: 40px 20px;
+    max-height: 200px;  /* THIS MIGHT FUCK IT UP BASED ON SCREEN SIZE */
 }
 
 .dumore-content {
@@ -1116,9 +1116,10 @@
     color: #000;
     margin-left: 4%;
     margin-right: 4%;
-    margin-top: -40px;
+    margin-top: 0px;
     line-height: 1.5;
     text-align: left;
+
 }
 
 /* "Learn More" Link Styling */
@@ -1147,11 +1148,15 @@
 }
 
 .tenants {
-    top: 120px; /* Same vertical alignment as "investors" */
+    top: -79px; /* Same vertical alignment as "investors" */
+    position: relative;
+
 }
 
 .partners {
-    top: 180px; /* Slightly below "tenants" */
+    top: -157px; /* Slightly below "tenants" */
+    position: relative;
+
 }
 
 
@@ -1202,64 +1207,90 @@
 
 
 
+
+
+
 .strategy-banner {
     position: relative; /* Allows absolute positioning inside */
     background-color: #333; /* Dark grey background */
     color: white;
     text-align: center;
-    padding: 50px 20px; /* Adjust padding */
-    margin-top: 175px;
+    padding: 40px 20px; /* Adjust padding */
+    max-height: 600px;
+
+
+    margin-top: 155px;
     overflow: visible; /* Ensures content outside the section remains visible */
 }
 
 .strategy-banner img {
-    width: 275px; /* Adjust size */
+    width: 255px; /* Adjust size */
     height: auto;
     display: block;
+
     margin: 0 auto; /* Center horizontally */
-    position: relative;
-    right: -40px;
-    top: -150px; /* Moves image upward outside the banner */
+    position: absolute;
+    right: 50px;
+    top: -95px; /* Moves image upward outside the banner */
+
 }
 
     .strategy-header {
         font-family: 'Times New Roman', serif;
-        font-size: 30px;
+        font-size: 40px;
         text-align: left;
         font-style: italic;
         padding-left: 20px;
         font-weight: normal;
-        margin-bottom: 10px;
+        position: relative;
+        top: 20px;
     }
 
     .strategy-paragraph {
         font-family: 'Calibri Light', sans-serif;
         font-size: 18px;
-padding-left: 20px;
+        padding-left: 20px;
+        padding-right: 60px;
         text-align: left;
         font-weight: normal;
         line-height: 1.6;
+        position: relative;
         max-width: 600px; /* Limit text width */
-        margin: 0 auto 20px; /* Center text with space below */
+        top: 10px;
+
     }
 
     .strategy-btn {
         font-family: 'Times New Roman', serif;
-        font-size: 18px;
+        font-size: 15px;
+        padding-top: 0px;
         font-style: italic;
         text-align: right;
+        display: block;
+        margin-right: 20px;
         background: none;
         border: none;
         color: white;
         transition: color 0.3s ease;
+        margin-left: auto;
     }
 
     .strategy-btn:hover {
         text-decoration: underline;
     }
 
-
         }
+
+
+
+
+
+
+
+
+
+
+
 
         /* Media Query for Medium Screens (768px to 1024px) */
         @media (min-width: 768px) and (max-width: 1999px) {
@@ -1443,7 +1474,6 @@ padding-left: 20px;
                 <p class="dumore-subheader partners">partners</p>
             </div>
         </section>
-
         <section class="dumore-paragraph">
                 <div class="dumore-paragraph-container">
                     <p class="dumore-paragraph">
@@ -1876,10 +1906,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => header1.classList.add('animate'), 0);
 
                 // Animate Du Logo
-                setTimeout(() => logo.classList.add('animate'), 200);
+                setTimeout(() => logo.classList.add('animate'), 100);
 
                 // Animate "for our"
-                setTimeout(() => header2.classList.add('animate'), 400);
+                setTimeout(() => header2.classList.add('animate'), 150);
 
                 // Animate "tenants"
                 setTimeout(() => {
