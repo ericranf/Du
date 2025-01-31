@@ -1100,7 +1100,7 @@
     font-size: 35px;
     font-style: italic;
     color: #000;
-    margin-top: 28px; /* Add spacing below "for our ..." */
+    margin-top: 35px; /* Add spacing below "for our ..." */
     text-align: right;
     opacity: 0; /* Start as hidden */
     transition: opacity 1s ease; /* Smooth fade-in */
@@ -1240,7 +1240,15 @@
     position: absolute;
     right: 40px;
     top: -109px; /* Moves image upward outside the banner */
+    opacity: 0;
+    clip-path: inset(100% 0 0 0); /* Start fully hidden from the bottom */
+    transition: clip-path 2s ease, opacity 2s ease;
+}
 
+
+.strategy-banner img.animate {
+    opacity: 1;
+    clip-path: inset(0 0 0 0); /* Fully reveal the image */
 }
 
     .strategy-header {
@@ -1253,6 +1261,24 @@
         position: relative;
         top: 5px;
     }
+
+    /* Underline Effect */
+.strategy-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position the underline below the text */
+    width: 0%; /* Start with no width */
+    height: 2px;
+    background-color: white; /* White underline */
+    transition: width 1.5s ease-in-out;
+}
+
+/* Animation when in view */
+.strategy-header.animate::after {
+    width: 100%; /* Expands fully from left to right */
+}
+
 
     .strategy-paragraph {
         font-family: 'Calibri Light', sans-serif;
@@ -1949,6 +1975,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Strategy Section
+document.addEventListener('DOMContentLoaded', () => {
+    const strategyBanner = document.querySelector('.strategy-banner');
+    const homeImage = strategyBanner.querySelector('img'); // Select Home image inside strategy-banner
+    const strategyHeader = document.querySelector('.strategy-header');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                homeImage.classList.add('animate'); // Trigger Home image animation
+                strategyHeader.classList.add('animate'); // Trigger underline animation
+            }
+        });
+    }, { threshold: 0.9 }); // Activate when 90% of the strategy banner is in view
+
+    observer.observe(strategyBanner);
+});
 
     </script>
 </body>
