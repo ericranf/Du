@@ -1216,11 +1216,32 @@
     color: white;
     text-align: center;
     padding: 40px 20px; /* Adjust padding */
-    max-height: 600px;
-
-
-    margin-top: 155px;
+    max-height: 300px;
+    margin-top: 195px;
     overflow: visible; /* Ensures content outside the section remains visible */
+}
+
+/* Top Shadow */
+.strategy-banner::before,
+.strategy-banner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 40px; /* Adjust shadow thickness */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+    z-index: 2;
+}
+
+/* Positioning the Top Shadow */
+.strategy-banner::before {
+    top: 0;
+}
+
+/* Positioning the Bottom Shadow */
+.strategy-banner::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent); /* Flip the gradient */
 }
 
 .strategy-banner img {
@@ -1230,8 +1251,8 @@
 
     margin: 0 auto; /* Center horizontally */
     position: absolute;
-    right: 50px;
-    top: -95px; /* Moves image upward outside the banner */
+    right: 40px;
+    top: -109px; /* Moves image upward outside the banner */
 
 }
 
@@ -1243,20 +1264,20 @@
         padding-left: 20px;
         font-weight: normal;
         position: relative;
-        top: 20px;
+        top: 5px;
     }
 
     .strategy-paragraph {
         font-family: 'Calibri Light', sans-serif;
         font-size: 18px;
         padding-left: 20px;
-        padding-right: 60px;
+        padding-right: 45px;
         text-align: left;
         font-weight: normal;
         line-height: 1.6;
         position: relative;
         max-width: 600px; /* Limit text width */
-        top: 10px;
+        top: -10px;
 
     }
 
