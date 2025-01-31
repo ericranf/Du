@@ -475,7 +475,7 @@
                 font-size: 16px;
                 padding-right: 0px;
                 text-align: left;
-                line-height: 2.0;
+                line-height: 1.6;
                 opacity: 0; /* Hidden initially */
                 transform: translateY(-20px); /* Slightly above its position */
                 transition: opacity 2s ease-in-out, transform 0s ease-in-out; /* Smooth animation */
@@ -711,7 +711,7 @@
     text-align: center; /* Center-align text if needed */
     padding-left: 10%;
     padding-right: 10%;
-    padding-top: 200px;
+    padding-top: 100px;
 }
         }
  
@@ -1102,13 +1102,10 @@
     color: #000;
     margin-top: 35px; /* Add spacing below "for our ..." */
     text-align: right;
-    opacity: 0; /* Start as hidden */
-    transition: opacity 1s ease; /* Smooth fade-in */
-    text-align: right;
+    opacity: 1;
+    position: absolute;
+    left: 80px; /* Adjust as needed to align properly */
 }
-
-
-
 
 
 /* Paragraph Styling */
@@ -1141,25 +1138,6 @@
     text-decoration: underline;
 }
 
-
-
-
-
-.tenants, .partners {
-    opacity: 0; /* Start as hidden */
-}
-
-.tenants {
-    top: -79px; /* Same vertical alignment as "investors" */
-    position: relative;
-
-}
-
-.partners {
-    top: -157px; /* Slightly below "tenants" */
-    position: relative;
-
-}
 
 
 
@@ -1928,55 +1906,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-///for investors
-document.addEventListener('DOMContentLoaded', () => {
-    const dumoreContent = document.querySelector('.dumore-content');
-    const header1 = document.querySelector('.dumore-header1');
-    const logo = document.querySelector('.dumore-logo');
-    const header2 = document.querySelector('.dumore-header2');
-    const tenants = document.querySelector('.tenants');
-    const partners = document.querySelector('.partners');
-    const investors = document.querySelector('.dumore-subheader');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Animate "We"
-                setTimeout(() => header1.classList.add('animate'), 0);
 
-                // Animate Du Logo
-                setTimeout(() => logo.classList.add('animate'), 100);
 
-                // Animate "for our"
-                setTimeout(() => header2.classList.add('animate'), 150);
 
-                // Animate "tenants"
-                setTimeout(() => {
-                    tenants.classList.add('animate');
-                }, 800); // Start after 0.8s
 
-                // Fade out "tenants" after 0.5s and fade in "partners"
-                setTimeout(() => {
-                    tenants.classList.remove('animate');
-                    partners.classList.add('animate');
-                }, 1300); // "tenants" disappears after 1.3s, "partners" fades in
 
-                // Fade out "partners" after 0.5s and fade in "investors"
-                setTimeout(() => {
-                    partners.classList.remove('animate');
-                    investors.classList.add('animate');
-                }, 1800); // "partners" disappears after 1.8s
 
-                // Keep "investors" visible
-                setTimeout(() => {
-                    investors.style.opacity = 1;
-                }, 2300); // Make "investors" stay visible
-            }
-        });
-    }, { threshold: 0.85 }); // Trigger when 85% of the content is in view
 
-    observer.observe(dumoreContent);
-});
 
 
 // Strategy Section
