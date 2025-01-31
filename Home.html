@@ -1251,32 +1251,35 @@
     clip-path: inset(0 0 0 0); /* Fully reveal the image */
 }
 
-    .strategy-header {
-        font-family: 'Times New Roman', serif;
-        font-size: 38px;
-        text-align: left;
-        font-style: italic;
-        padding-left: 20px;
-        font-weight: normal;
-        position: relative;
-        top: 5px;
-    }
+.strategy-header {
+    font-family: 'Times New Roman', serif;
+    font-size: 38px;
+    text-align: left;
+    font-style: italic;
+    padding-left: 0px;
+    font-weight: normal;
+    position: relative;
+    left: -75px;
 
-    /* Underline Effect */
+    display: inline-block; /* Restrict width to text only */
+    top: 5px;
+}
+
+/* Animated underline */
 .strategy-header::after {
     content: "";
     position: absolute;
-    left: 20px;
-    bottom: -5px; /* Position the underline below the text */
-    width: 0%; /* Start with no width */
+    left: 0;
+    bottom: -5px; /* Adjust distance from text */
+    width: 0px; /* Start hidden */
     height: 2px;
-    background-color: white; /* White underline */
+    background-color: white;
     transition: width 1.5s ease-in-out;
 }
 
-/* Animation when in view */
+/* When in view, animate the underline */
 .strategy-header.animate::after {
-    width: 49%; /* Expands fully from left to right */
+    width: var(--underline-width, 100%); /* Use dynamic width */
 }
 
 
@@ -1290,7 +1293,7 @@
         line-height: 1.6;
         position: relative;
         max-width: 600px; /* Limit text width */
-        top: -2px;
+        top: -15px;
 
     }
 
@@ -1978,19 +1981,30 @@ document.addEventListener('DOMContentLoaded', () => {
 // Strategy Section
 document.addEventListener('DOMContentLoaded', () => {
     const strategyBanner = document.querySelector('.strategy-banner');
-    const homeImage = strategyBanner.querySelector('img'); // Select Home image inside strategy-banner
+    const homeImage = strategyBanner.querySelector('img'); // Home image inside strategy-banner
     const strategyHeader = document.querySelector('.strategy-header');
 
+    // Function to dynamically set underline width
+    function setUnderlineWidth() {
+        const textWidth = strategyHeader.getBoundingClientRect().width; // Get the width of "Our Strategy"
+        strategyHeader.style.setProperty('--underline-width', `${textWidth}px`);
+    }
+
+    // Observe when strategy banner is 90% in view
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 homeImage.classList.add('animate'); // Trigger Home image animation
                 strategyHeader.classList.add('animate'); // Trigger underline animation
+                setUnderlineWidth(); // Adjust width dynamically
             }
         });
-    }, { threshold: 0.9 }); // Activate when 90% of the strategy banner is in view
+    }, { threshold: 0.9 });
 
     observer.observe(strategyBanner);
+
+    // Recalculate on window resize to ensure accuracy
+    window.addEventListener('resize', setUnderlineWidth);
 });
 
     </script>
