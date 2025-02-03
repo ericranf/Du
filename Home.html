@@ -567,6 +567,7 @@
          width: 0; /* Vertical line has no width */
          transition: height 2.5s ease-in-out; /* Add smooth animation */
          overflow: hidden; /* Ensure no content is visible initially */
+         opacity: 0;
         }
 
 .vertical-line-resilience.animate {
@@ -600,6 +601,7 @@
             .vertical-line-container {
             display: flex;
             align-items: flex-start;
+
             padding-left: 5%; /* Match the padding of business-plan-paragraph */
             position: relative;
         
@@ -612,6 +614,7 @@
             position: absolute;
             height: 0;
             top: 47px;
+
             bottom: auto;
             transition: height 4s ease-in-out; /* Add smooth animation */
             overflow: hidden; /* Ensure no content is visible initially */
@@ -619,6 +622,7 @@
 
           .vertical-line.animate {
           height: calc(100% - 73px); /* Dynamic full height */
+
     }
  
             .more-info-btn, .explore-btn {
@@ -1174,7 +1178,6 @@
     left: 0;
     width: 0; /* Hidden initially */
     height: 2px;
-    color: #ffffff;
     background-color: black; /* Color of underline */
     transition: width 1s ease; /* Smooth underline animation */
 }
