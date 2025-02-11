@@ -34,7 +34,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1; /* Ensure header is above GIF */
+    z-index: 3; /* Ensure header is above GIF */
 }
  
         header .logo img {
@@ -121,8 +121,8 @@
     overflow-y: visible;
     position: relative;
     width: 100vw;
-    top: -200px;
-    height: 800px; /* LIMIT GIF TO 80% OF VIEWPORT */
+    top: -20px;
+    height: 700px; /* LIMIT GIF TO 80% OF VIEWPORT */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -136,6 +136,7 @@
     height: 100%;
     object-fit: cover; /* Ensures full cover */
     object-position: center;
+    filter: brightness(0.40);
   
 }
 
