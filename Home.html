@@ -25,12 +25,17 @@
  
         header {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background: #333;
-            color: white;
-        }
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: transparent;
+    color: #ddd;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10; /* Ensure header is above GIF */
+}
  
         header .logo img {
             height: 30px;
@@ -108,29 +113,20 @@
 
 
         @media (max-width: 768px) {
-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(51, 51, 51, 0); /* Fully transparent */
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10; /* Ensures it's above GIF */
-}
+
 
 /* GIF banner stays limited to its section */
 .gif-banner {
     position: relative;
-    width: 100vw;
-    height: 60vh; /* LIMIT GIF TO 80% OF VIEWPORT */
+    width: 90vw;
+    top: -20px;
+    height: 800px; /* LIMIT GIF TO 80% OF VIEWPORT */
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid red; /* Red border with 2px thickness */
+    box-sizing: border-box; /* Ensures border is included in the width and height */
 }
 
 /* Ensure the GIF properly fits without taking over the whole site */
@@ -139,21 +135,16 @@ header {
     height: 100%;
     object-fit: cover; /* Ensures full cover */
     object-position: center;
+    border: 2px solid red; /* Red border with 2px thickness */
+    box-sizing: border-box; /* Ensures border is included in the width and height */
 }
 
-/* Overlay to darken GIF */
-.gif-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark transparency */
-    z-index: 1;
-}
+
 
 /* Business plan header text */
 .business-plan-header {
     position: absolute;
-    text-align: center;
+    text-align: left;
     color: white;
     z-index: 2;
     bottom: 10%;
