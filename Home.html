@@ -117,16 +117,16 @@
 
 /* GIF banner stays limited to its section */
 .gif-banner {
-    overflow: hidden;
     overflow-y: visible;
     position: relative;
     width: 100vw;
     top: -20px;
-    height: 700px; /* LIMIT GIF TO 80% OF VIEWPORT */
+    height: calc(100vh + 20px);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1; 
 
 }
 
@@ -136,7 +136,7 @@
     height: 100%;
     object-fit: cover; /* Ensures full cover */
     object-position: center;
-    filter: brightness(0.40);
+    filter: brightness(0.450);
   
 }
 
@@ -288,7 +288,18 @@ main {
         </div>
     </footer>
  
- <script>
+
+    <script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        const icon = document.querySelector('#nav-icon3');
+        nav.classList.toggle('open');
+        icon.classList.toggle('open');
+    }
+
+
 </script>
 </body>
 </html>
+
+
